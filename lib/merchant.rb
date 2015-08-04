@@ -7,7 +7,7 @@ class Merchant
 
   def initialize(id = nil, name = nil, created_at = nil, updated_at = nil)
     @id = id
-    @name = name.to_s.delete("\"").to_sym
+    @name = name.to_s.delete("\"")
     @created_at = created_at
     @updated_at = updated_at
   end

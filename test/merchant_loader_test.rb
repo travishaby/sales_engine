@@ -17,13 +17,12 @@ class MerchantLoaderTest < Minitest::Test
     assert merchant_repository.merchants["1"]
   end
 
-  def test_returning_expected_hash_after_adding_merchants
+  def test_returning_name_from_repository_hash
     merchant_repository = MerchantRepository.new
     merchant_loader = merchant_repository.merchant_loader
     merchant_loader.add_merchant("1", "name1", "created_at", "updated_at")
-    merchant_loader.add_merchant("2", "name2", "created_at", "updated_at")
     result = merchant_loader.merchant_repository.merchants["1"].name
-    assert_equal :name1, result
+    assert_equal "name1", result
   end
 
   def test_that_csv_values_are_imported_from_file
