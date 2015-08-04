@@ -40,7 +40,6 @@ class MerchantRepositoryTest < Minitest::Test
     merchant_repo = MerchantRepository.new
     merchant_repo.load_merchants
     assert_equal :"Schroeder-Jerde", merchant_repo.merchants["1"].name
-
   end
 
 end
