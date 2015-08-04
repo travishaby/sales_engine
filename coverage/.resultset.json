@@ -1,34 +1,50 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/travishaby/turing/module-1/sales_engine/lib/merchant_repository.rb": [
-        1,
-        1,
-        null,
+      "/Users/mbburch/turing/module-1/sales_engine/lib/merchant_loader.rb": [
         1,
         null,
         1,
         null,
         1,
-        5,
-        null,
-        null,
-        1,
-        203,
-        null,
-        null,
         1,
         null,
         null,
+        1,
         2,
-        200,
         null,
-        2,
+        null,
+        1,
+        null,
+        null,
+        0,
+        0,
+        null,
+        0,
         null,
         null,
         null
       ],
-      "/Users/travishaby/turing/module-1/sales_engine/lib/merchant.rb": [
+      "/Users/mbburch/turing/module-1/sales_engine/lib/merchant_repository.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/mbburch/turing/module-1/sales_engine/lib/merchant.rb": [
         null,
         1,
         null,
@@ -38,15 +54,15 @@
         null,
         null,
         1,
-        203,
-        203,
-        203,
-        203,
+        2,
+        2,
+        2,
+        2,
         null,
         null,
         null
       ]
     },
-    "timestamp": 1438650865
+    "timestamp": 1438711872
   }
 }
