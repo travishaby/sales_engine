@@ -7,20 +7,19 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/merchant_loader'
 require './lib/merchant_repository'
+require './test/merchant_repository_test'
 
 class MerchantLoaderTest < Minitest::Test
 
   def test_loading_merchants_manually
-    skip
-    merchant_loader = MerchantLoader.new
-    merch1 = Merchant.new("1", "name", "created_at", "updated_at")
-    assert_equal merch1,
-    merchant_loader.add_merchant("1", merch1)
+    merchant_repository = MerchantRepository.new
+    merchant_repository.merchant_loader.add_merchant("1", "name", "created_at", "updated_at")
+    assert merchant_repository.merchants["1"]
   end
 
   def test_returning_expected_hash_after_adding_merchants
     merchant_repository = MerchantRepository.new
-    merchant_loader = merchant_repository.load_merchants
+    merchant_loader = merchant_repository.merchant_loader
     merchant_loader.add_merchant("1", "name1", "created_at", "updated_at")
     merchant_loader.add_merchant("2", "name2", "created_at", "updated_at")
     result = merchant_loader.merchant_repository.merchants["1"].name
@@ -28,9 +27,9 @@ class MerchantLoaderTest < Minitest::Test
   end
 
   def test_that_csv_values_are_imported_from_file
-    skip
-    merchant_loader = MerchantLoader.new
-    assert_equal merchant_loader.merchants, merchant_loader.load_merchants
+    merchant_repository = MerchantRepository.new
+    assert_equal merchant_repository.merchants,
+    merchant_repository.merchant_loader.load_merchants
   end
 
 end

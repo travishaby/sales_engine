@@ -1,5 +1,6 @@
 require 'csv'
-require './lib/merchant'
+require_relative 'merchant'
+require_relative 'merchant_loader'
 
 class MerchantRepository
 
@@ -9,9 +10,8 @@ class MerchantRepository
     @merchants = {}
   end
 
-
-  def load_merchants
-    merchant_loader = MerchantLoader.new(self)
+  def merchant_loader
+    MerchantLoader.new(self)
   end
 
 end

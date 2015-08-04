@@ -16,7 +16,7 @@ class MerchantLoader
                 header_converters: :symbol) do |row|
       add_merchant(row[:id], row[:name], row[:created_at], row[:updated_at])
     end
-    merchants
+    merchant_repository.merchants
   end
 
 end
