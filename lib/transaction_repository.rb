@@ -3,7 +3,7 @@ require_relative 'transaction_loader'
 
 class TransactionRepository
 
-  attr_reader :transaction
+  attr_reader :transactions
 
   def initialize
     @transactions = {}

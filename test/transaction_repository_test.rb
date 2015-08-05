@@ -1,7 +1,5 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require 'test_helper'
 require './lib/transaction_repository'
-# require './test/transaction_test'
 
 class TransactionRepositoryTest < Minitest::Test
 
@@ -42,7 +40,7 @@ class TransactionRepositoryTest < Minitest::Test
   def test_accesses_transaction_credit_card_expiration_date_with_id
     transaction_repository = TransactionRepository.new
     transaction_repository.transaction_loader.load_transactions
-    assert_equal "", transaction_repository.transactions["4"].credit_card_expiration_date
+    assert_equal nil, transaction_repository.transactions["4"].credit_card_expiration_date
   end
 
   def test_accesses_transaction_created_at_with_id
@@ -62,7 +60,7 @@ class TransactionRepositoryTest < Minitest::Test
   def test_attempt_access_nonexistent_value
     transaction_repository = TransactionRepository.new
     transaction_repository.transaction_loader.load_transactions
-    refute transaction_repository.transactions["1001"]
+    refute transaction_repository.transactions["5600"]
   end
 
 end
