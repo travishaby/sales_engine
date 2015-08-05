@@ -1,3 +1,6 @@
+require_relative 'item'
+require 'CSV'
+
 class ItemLoader
 
   attr_reader :item_repository
@@ -12,7 +15,7 @@ class ItemLoader
   end
 
   def load_items
-    CSV.foreach('./data/items.csv'),
+    CSV.foreach('./data/items.csv',
                 headers: true,
                 header_converters: :symbol) do |row|
       add_item(row[:name],
