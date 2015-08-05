@@ -6,7 +6,7 @@ class CustomerLoader
 
   def initialize(customer_repository)
     @customer_repository = customer_repository
-          @customer_file = customer_repository.customer_file
+    @customer_file       = customer_repository.customer_file
   end
 
   def add_customer(id, first_name, last_name, created_at, updated_at)
