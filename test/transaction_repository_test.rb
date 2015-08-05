@@ -1,4 +1,4 @@
-require 'test_helper'
+require_relative 'test_helper'
 require './lib/transaction_repository'
 
 class TransactionRepositoryTest < Minitest::Test

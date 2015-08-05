@@ -1,9 +1,6 @@
-require 'pry'
-require 'minitest/autorun'
-require 'minitest/pride'
+require_relative 'test_helper'
 require './lib/customer_loader'
 require './lib/customer_repository'
-require './test/customer_repository_test'
 
 class CustomerLoaderTest < Minitest::Test
 
