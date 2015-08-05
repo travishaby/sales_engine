@@ -2,10 +2,11 @@ require 'csv'
 
 class CustomerLoader
 
-  attr_reader :customer_repository
+  attr_reader :customer_repository, :customer_file
 
   def initialize(customer_repository)
     @customer_repository = customer_repository
+          @customer_file = customer_repository.customer_file
   end
 
   def add_customer(id, first_name, last_name, created_at, updated_at)
@@ -17,7 +18,7 @@ class CustomerLoader
   end
 
   def load_customers
-    CSV.foreach('./data/customers.csv',
+    CSV.foreach(customer_file,
                 headers: true,
                 header_converters: :symbol) do |row|
       add_customer(row[:id],
