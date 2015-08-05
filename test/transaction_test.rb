@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require_relative 'test_helper'
 require './lib/transaction'
 
 class TransactionTest < Minitest::Test
@@ -19,7 +18,7 @@ class TransactionTest < Minitest::Test
     assert transaction.created_at
     assert transaction.updated_at
   end
-  # 
+  #
   # def test_it_initializes_with_incorrectly_formatted_name
   #   transaction = Transaction.new("1",
   #                                 "1",
