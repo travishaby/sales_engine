@@ -4,7 +4,7 @@ class InvoiceItem
               :item_id,
               :invoice_id,
               :quantity,
-              :unit_price
+              :unit_price,
               :created_at,
               :updated_at
 
@@ -12,7 +12,7 @@ class InvoiceItem
                  item_id = nil,
                  invoice_id = nil,
                  quantity = nil,
-                 unit_price = nil
+                 unit_price = nil,
                  created_at = nil,
                  updated_at = nil)
     @id = id
