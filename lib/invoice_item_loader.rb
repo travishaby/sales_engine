@@ -14,7 +14,7 @@ class InvoiceItemLoader
                        quantity,
                        unit_price,
                        created_at,
-                       updated_at,)
+                       updated_at)
     invoice_item_repository.invoice_items[id] = InvoiceItem.new(id,
                     item_id,
                     invoice_id,
@@ -25,10 +25,10 @@ class InvoiceItemLoader
   end
 
   def load_invoice_items
-    CSV.foreach('.data/invoice_items.csv',
+    CSV.foreach('./data/invoice_items.csv',
                 headers: true,
                 header_converters: :symbol) do |row|
-      add_item(row[:id],
+      add_invoice_item(row[:id],
                row[:item_id],
                row[:invoice_id],
                row[:quantity],
