@@ -51,5 +51,4 @@ class ItemRepositoryTest < Minitest::Test
     refute item_repository.items["1001"]
   end
 
-
 end
