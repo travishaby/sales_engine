@@ -9,14 +9,22 @@ class CustomerLoaderTest < Minitest::Test
 
   def test_loading_customers_manually
     customer_repository = CustomerRepository.new
-    customer_repository.customer_loader.add_customer("1","Joey","Ondricka","2012-03-27 14:54:09 UTC","2012-03-27 14:54:09 UTC")
+    customer_repository.customer_loader.add_customer("1",
+                                                    "Joey",
+                                                    "Ondricka",
+                                                    "2012-03-27 14:54:09 UTC",
+                                                    "2012-03-27 14:54:09 UTC")
     assert customer_repository.customers["1"]
   end
 
   def test_returning_name_from_repository_hash
     customer_repository = CustomerRepository.new
     customer_loader = customer_repository.customer_loader
-    customer_loader.add_customer("1","Joey","Ondricka","2012-03-27 14:54:09 UTC","2012-03-27 14:54:09 UTC")
+    customer_loader.add_customer("1",
+                                "Joey",
+                                "Ondricka",
+                                "2012-03-27 14:54:09 UTC",
+                                "2012-03-27 14:54:09 UTC")
     result = customer_loader.customer_repository.customers["1"].first_name
     assert_equal "Joey", result
   end
