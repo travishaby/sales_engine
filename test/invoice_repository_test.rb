@@ -1,7 +1,5 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require_relative 'test_helper'
 require './lib/invoice_repository'
-require './test/invoice_test'
 
 class InvoiceRepositoryTest < Minitest::Test
 
@@ -10,47 +8,54 @@ class InvoiceRepositoryTest < Minitest::Test
     assert invoice_repository.invoices
   end
 
-  def test_merchant_loader_object_is_created
+  def test_invoice_loader_object_is_created
     invoice_repository = InvoiceRepository.new
-    assert invoice_repository.merchant_loader
+    assert invoice_repository.invoice_loader
   end
 
-  def test_self_is_passed_into_merchant_loader
+  def test_self_is_passed_into_invoice_loader
     invoice_repository = InvoiceRepository.new
-    merchant_loader = invoice_repository.merchant_loader
-    assert_equal invoice_repository, merchant_loader.invoice_repository
+    invoice_loader = invoice_repository.invoice_loader
+    assert_equal invoice_repository, invoice_loader.invoice_repository
   end
 
-  def test_accesses_merchant_name_with_id
+  def test_accesses_customer_id_with_id
     invoice_repository = InvoiceRepository.new
-    invoice_repository.merchant_loader.load_invoices
-    assert_equal "Schroeder-Jerde", invoice_repository.invoices["1"].name
+    invoice_repository.invoice_loader.load_invoices
+    assert_equal "1", invoice_repository.invoices["1"].customer_id
   end
 
   def test_accesses_merchant_id_with_id
     invoice_repository = InvoiceRepository.new
-    invoice_repository.merchant_loader.load_invoices
-    assert_equal "2", invoice_repository.invoices["2"].id
+    invoice_repository.invoice_loader.load_invoices
+    assert_equal "75", invoice_repository.invoices["2"].merchant_id
   end
 
-  def test_accesses_merchant_created_at_with_id
+  def test_accesses_status_with_id
     invoice_repository = InvoiceRepository.new
-    invoice_repository.merchant_loader.load_invoices
-    assert_equal "2012-03-27 14:53:59 UTC",
-    invoice_repository.invoices["3"].created_at
+    invoice_repository.invoice_loader.load_invoices
+    assert_equal "shipped",
+    invoice_repository.invoices["3"].status
   end
 
-  def test_accesses_merchant_updated_at_with_id
+  def test_accesses_invoice_created_at_with_id
     invoice_repository = InvoiceRepository.new
-    invoice_repository.merchant_loader.load_invoices
-    assert_equal "2012-03-27 14:53:59 UTC",
+    invoice_repository.invoice_loader.load_invoices
+    assert_equal "2012-03-24 15:54:10 UTC",
+    invoice_repository.invoices["4"].created_at
+  end
+
+  def test_accesses_invoice_updated_at_with_id
+    invoice_repository = InvoiceRepository.new
+    invoice_repository.invoice_loader.load_invoices
+    assert_equal "2012-03-24 15:54:10 UTC",
     invoice_repository.invoices["4"].updated_at
   end
 
   def test_attempt_access_nonexistent_value
     invoice_repository = InvoiceRepository.new
-    invoice_repository.merchant_loader.load_invoices
-    refute invoice_repository.invoices["1001"]
+    invoice_repository.invoice_loader.load_invoices
+    refute invoice_repository.invoices["5000"]
   end
 
 end
