@@ -32,7 +32,7 @@ class TransactionLoaderTest < Minitest::Test
 
   def test_that_csv_values_are_imported_from_file
     transaction_repository = TransactionRepository.new
-    results = transaction_repository.transaction_loader.load_transactions
+    result = transaction_repository.transaction_loader.load_transactions
     assert_equal transaction_repository.transactions, result
   end
 

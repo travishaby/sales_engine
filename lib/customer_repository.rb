@@ -14,4 +14,28 @@ class CustomerRepository
     CustomerLoader.new(self)
   end
 
+  def all
+    customers.values
+  end
+
+  def random
+    customers.values.to_a.sample
+  end
+
+  def find_by_id(id)
+    customers[id]
+  end
+
+  def find_by_first_name(first_name)
+    customers.detect do |id, object|
+      object.first_name == first_name
+    end
+  end
+
+  def find_by_last_name(last_name)
+    customers.detect do |id, object|
+      object.last_name == last_name
+    end
+  end
+
 end
