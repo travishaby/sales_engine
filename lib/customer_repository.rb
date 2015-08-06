@@ -3,11 +3,12 @@ require_relative 'customer_loader'
 
 class CustomerRepository
 
-  attr_reader :customers, :customer_file
+  attr_reader :customers, :customer_file, :engine
 
-  def initialize(customer_file = './data/customers.csv')
+  def initialize(engine = nil, customer_file = './data/customers.csv')
     @customers = {}
     @customer_file = customer_file
+    @engine = engine
   end
 
   def customer_loader
@@ -44,10 +45,14 @@ class CustomerRepository
     end
   end
 
-  def find_by_updated_at(updated_at)
+  def find_by(attribute, match)
     customers.detect do |id, object|
-      object.updated_at == updated_at
+      object.send(attribute) == match
     end
+  end
+
+  def find_by_updated_at(updated_at)
+    find_by(:updated_at, updated_at)
   end
 
   def find_all_by_last_name(last_name)

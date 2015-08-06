@@ -4,7 +4,7 @@ require './lib/customer_repository'
 class CustomerRepositoryTest < Minitest::Test
 
   def fixture_setup
-    customer_repository = CustomerRepository.new('./fixtures/customers.csv')
+    customer_repository = CustomerRepository.new(nil, './fixtures/customers.csv')
     customer_repository.customer_loader.load_customers
     customer_repository
   end
@@ -98,7 +98,15 @@ class CustomerRepositoryTest < Minitest::Test
     fixture_setup.find_by_updated_at("2012-03-27 14:54:32 UTC")[1].updated_at
   end
 
+  def test_general_find_by_method_with_updated_at
+    assert_equal "2012-03-27 14:54:32 UTC",
+    fixture_setup.find_by(:updated_at,"2012-03-27 14:54:32 UTC")[1].updated_at
+  end
 
+  def test_general_find_by_method_with_updated_at
+    assert_equal "2012-03-27 14:54:32 UTC",
+    fixture_setup.find_by_updated_at("2012-03-27 14:54:32 UTC")[1].updated_at
+  end
 
   def test_find_all_by_last_name
     assert_equal 2, fixture_setup.find_all_by_last_name("Barrows").size

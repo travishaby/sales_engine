@@ -1,13 +1,6 @@
-gem 'simplecov', :require => false, :group => :test
-require 'simplecov'
-SimpleCov.start
-
-require 'pry'
-require 'minitest/autorun'
-require 'minitest/pride'
+require_relative 'test_helper'
 require './lib/merchant_loader'
 require './lib/merchant_repository'
-require './test/merchant_repository_test'
 
 class MerchantLoaderTest < Minitest::Test
 
