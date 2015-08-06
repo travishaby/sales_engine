@@ -2,10 +2,11 @@ require 'csv'
 
 class TransactionLoader
 
-  attr_reader :transaction_repository
+  attr_reader :transaction_repository, :transaction_file
 
   def initialize(transaction_repository)
     @transaction_repository = transaction_repository
+    @transaction_file       = transaction_repository.transaction_file
   end
 
   def add_transaction(id,
@@ -24,7 +25,7 @@ class TransactionLoader
   end
 
   def load_transactions
-    CSV.foreach('./data/transactions.csv',
+    CSV.foreach(transaction_file,
                 headers: true,
                 header_converters: :symbol) do |row|
       add_transaction(row[:id],

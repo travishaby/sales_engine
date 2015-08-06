@@ -30,10 +30,28 @@ class TransactionLoaderTest < Minitest::Test
     assert_equal "4654405418249632", result
   end
 
-  def test_that_csv_values_are_imported_from_file
-    transaction_repository = TransactionRepository.new
-    result = transaction_repository.transaction_loader.load_transactions
-    assert_equal transaction_repository.transactions, result
+  def test_that_csv_values_are_imported_from_fixture_file
+    transcation_repository = TransactionRepository.new('./fixtures/transactions.csv')
+    assert_equal transcation_repository.transactions,
+    transcation_repository.transaction_loader.load_transactions
+  end
+
+  def test_accessing_fixture_values
+    transcation_repository = TransactionRepository.new('./fixtures/transactions.csv')
+    transcation_repository.transaction_loader.load_transactions
+    assert_equal "89", transcation_repository.transactions["98"].invoice_id
+  end
+
+  def test_that_csv_values_are_imported_from_real_csv_file
+    transcation_repository = TransactionRepository.new
+    assert_equal transcation_repository.transactions,
+    transcation_repository.transaction_loader.load_transactions
+  end
+
+  def test_accessing_values_from_full_csv_file
+    transcation_repository = TransactionRepository.new
+    transcation_repository.transaction_loader.load_transactions
+    assert_equal "4620443924688732", transcation_repository.transactions["120"].credit_card_number
   end
 
 end

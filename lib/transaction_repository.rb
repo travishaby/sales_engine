@@ -3,10 +3,12 @@ require_relative 'transaction_loader'
 
 class TransactionRepository
 
-  attr_reader :transactions
+  attr_reader :transactions, :transaction_file, :engine
 
-  def initialize
+  def initialize(engine = nil, transaction_file = './data/transactions.csv')
     @transactions = {}
+    @transaction_file = transaction_file
+    @engine = engine
   end
 
   def transaction_loader
