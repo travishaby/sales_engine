@@ -76,6 +76,11 @@ class CustomerRepositoryTest < Minitest::Test
     end
   end
 
+  def test_general_find_by_method_with_updated_at
+    assert_equal "2012-03-27 14:54:32 UTC",
+    fixture_setup.find_by(:updated_at,"2012-03-27 14:54:32 UTC")[1].updated_at
+  end
+
   def test_returns_single_object_with_matching_id
     assert_equal "Sylvester", fixture_setup.find_by_id("5").first_name
   end
@@ -98,14 +103,26 @@ class CustomerRepositoryTest < Minitest::Test
     fixture_setup.find_by_updated_at("2012-03-27 14:54:32 UTC")[1].updated_at
   end
 
-  def test_general_find_by_method_with_updated_at
-    assert_equal "2012-03-27 14:54:32 UTC",
-    fixture_setup.find_by(:updated_at,"2012-03-27 14:54:32 UTC")[1].updated_at
+  def test_general_find_by_all_method_with_last_name
+    assert_equal 2,
+    fixture_setup.find_by_all(:last_name,"Barrows").size
   end
 
-  def test_general_find_by_method_with_updated_at
-    assert_equal "2012-03-27 14:54:32 UTC",
-    fixture_setup.find_by_updated_at("2012-03-27 14:54:32 UTC")[1].updated_at
+  def test_general_find_by_all_method_with_last_name_and_specific_keys
+    assert_equal ["91", "100"],
+    fixture_setup.find_by_all(:last_name,"Barrows").keys
+  end
+
+  def test_find_all_by_id
+    assert_equal 1, fixture_setup.find_all_by_id("76").size
+  end
+
+  def test_find_all_by_first_name
+    assert_equal 1, fixture_setup.find_all_by_first_name("Wayne").size
+  end
+
+  def test_find_all_by_first_name_with_specific_keys
+    assert_equal ["47"], fixture_setup.find_all_by_first_name("Wayne").keys
   end
 
   def test_find_all_by_last_name
@@ -114,6 +131,14 @@ class CustomerRepositoryTest < Minitest::Test
 
   def test_find_all_by_last_name_with_specific_keys
     assert_equal ["91", "100"], fixture_setup.find_all_by_last_name("Barrows").keys
+  end
+
+  def test_find_all_by_created_at
+    assert_equal 3, fixture_setup.find_all_by_created_at("2012-03-27 14:54:11 UTC").size
+  end
+
+  def test_find_all_by_updated_at
+    assert_equal 4, fixture_setup.find_all_by_updated_at("2012-03-27 14:54:13 UTC").size
   end
 
 end

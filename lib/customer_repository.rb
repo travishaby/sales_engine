@@ -27,38 +27,54 @@ class CustomerRepository
     customers[id]
   end
 
-  def find_by_first_name(first_name)
-    customers.detect do |id, object|
-      object.first_name == first_name
-    end
-  end
-
-  def find_by_last_name(last_name)
-    customers.detect do |id, object|
-      object.last_name == last_name
-    end
-  end
-
-  def find_by_created_at(created_at)
-    customers.detect do |id, object|
-      object.created_at == created_at
-    end
-  end
-
   def find_by(attribute, match)
     customers.detect do |id, object|
       object.send(attribute) == match
     end
   end
 
+  def find_by_first_name(first_name)
+    find_by(:first_name, first_name)
+  end
+
+  def find_by_last_name(last_name)
+    find_by(:last_name, last_name)
+
+  end
+
+  def find_by_created_at(created_at)
+    find_by(:created_at, created_at)
+
+  end
+
   def find_by_updated_at(updated_at)
     find_by(:updated_at, updated_at)
   end
 
-  def find_all_by_last_name(last_name)
+  def find_by_all(attribute, match)
     customers.select do |id, object|
-      object.last_name == last_name
+      object.send(attribute) == match
     end
+  end
+
+  def find_all_by_id(id)
+    find_by_all(:id, id)
+  end
+
+  def find_all_by_first_name(first_name)
+    find_by_all(:first_name, first_name)
+  end
+
+  def find_all_by_last_name(last_name)
+    find_by_all(:last_name, last_name)
+  end
+
+  def find_all_by_created_at(created_at)
+    find_by_all(:created_at, created_at)
+  end
+
+  def find_all_by_updated_at(updated_at)
+    find_by_all(:updated_at, updated_at)
   end
 
 end
