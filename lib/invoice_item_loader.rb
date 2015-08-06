@@ -1,11 +1,12 @@
-require 'CSV'
+require 'csv'
 
 class InvoiceItemLoader
 
-  attr_reader :invoice_item_repository
+  attr_reader :invoice_item_repository, :invoice_item_file
 
   def initialize(invoice_item_repository)
     @invoice_item_repository = invoice_item_repository
+    @invoice_item_file       = invoice_item_repository.invoice_item_file
   end
 
   def add_invoice_item(id,
@@ -25,7 +26,7 @@ class InvoiceItemLoader
   end
 
   def load_invoice_items
-    CSV.foreach('./data/invoice_items.csv',
+    CSV.foreach(invoice_item_file,
                 headers: true,
                 header_converters: :symbol) do |row|
       add_invoice_item(row[:id],
