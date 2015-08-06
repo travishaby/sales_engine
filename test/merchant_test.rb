@@ -1,7 +1,6 @@
 require_relative 'test_helper'
 require './lib/merchant'
 
-
 class MerchantTest < Minitest::Test
 
   def test_it_initializes_with_correctly_formatted_values

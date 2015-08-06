@@ -3,10 +3,12 @@ require_relative 'item_loader'
 
 class ItemRepository
 
-  attr_reader :items
+  attr_reader :items, :item_file, :engine
 
-  def initialize
+  def initialize(engine = nil, item_file = './data/items.csv')
     @items = {}
+    @item_file = item_file
+    @engine = engine
   end
 
   def item_loader

@@ -1,8 +1,19 @@
 require_relative 'test_helper'
 require './lib/merchant_repository'
-require './test/merchant_test'
 
 class MerchantRepositoryTest < Minitest::Test
+
+  def data_setup
+    merchant_repository = MerchantRepository.new
+    merchant_repository.merchant_loader.load_merchants
+    merchant_repository
+  end
+
+  def fixture_setup
+    merchant_repository = MerchantRepository.new(nil, './fixtures/merchants.csv')
+    merchant_repository.merchant_loader.load_merchants
+    merchant_repository
+  end
 
   def test_repo_starts_as_empty_hash
     merchant_repository = MerchantRepository.new
@@ -21,35 +32,25 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_accesses_merchant_name_with_id
-    merchant_repository = MerchantRepository.new
-    merchant_repository.merchant_loader.load_merchants
-    assert_equal "Schroeder-Jerde", merchant_repository.merchants["1"].name
+    assert_equal "Schroeder-Jerde", data_setup.merchants["1"].name
   end
 
   def test_accesses_merchant_id_with_id
-    merchant_repository = MerchantRepository.new
-    merchant_repository.merchant_loader.load_merchants
-    assert_equal "2", merchant_repository.merchants["2"].id
+    assert_equal "2", data_setup.merchants["2"].id
   end
 
   def test_accesses_merchant_created_at_with_id
-    merchant_repository = MerchantRepository.new
-    merchant_repository.merchant_loader.load_merchants
     assert_equal "2012-03-27 14:53:59 UTC",
-    merchant_repository.merchants["3"].created_at
+    data_setup.merchants["3"].created_at
   end
 
   def test_accesses_merchant_updated_at_with_id
-    merchant_repository = MerchantRepository.new
-    merchant_repository.merchant_loader.load_merchants
     assert_equal "2012-03-27 14:53:59 UTC",
-    merchant_repository.merchants["4"].updated_at
+    data_setup.merchants["4"].updated_at
   end
 
   def test_attempt_access_nonexistent_value
-    merchant_repository = MerchantRepository.new
-    merchant_repository.merchant_loader.load_merchants
-    refute merchant_repository.merchants["1001"]
+    refute data_setup.merchants["1001"]
   end
 
 end
