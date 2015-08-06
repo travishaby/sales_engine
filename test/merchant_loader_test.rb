@@ -1,7 +1,10 @@
+<<<<<<< HEAD
+=======
 gem 'simplecov', :require => false, :group => :test
 require 'simplecov'
 SimpleCov.start
 
+>>>>>>> master
 require_relative 'test_helper'
 require './lib/merchant_loader'
 require './lib/merchant_repository'

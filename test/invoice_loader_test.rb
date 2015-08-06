@@ -28,10 +28,29 @@ class InvoiceLoaderTest < Minitest::Test
     assert_equal "1", result
   end
 
-  def test_that_csv_values_are_imported_from_file
+  def test_that_csv_values_are_imported_from_fixture_file
+    invoice_repository = InvoiceRepository.new('./fixtures/invoices.csv')
+    assert_equal invoice_repository.invoices,
+    invoice_repository.invoice_loader.load_invoices
+  end
+
+  def test_accessing_fixture_values
+    invoice_repository = InvoiceRepository.new('./fixtures/invoices.csv')
+    invoice_repository.invoice_loader.load_invoices
+    assert_equal "shipped",
+    invoice_repository.invoices["2"].status
+  end
+
+  def test_that_csv_values_are_imported_from_real_csv_file
     invoice_repository = InvoiceRepository.new
     assert_equal invoice_repository.invoices,
     invoice_repository.invoice_loader.load_invoices
+  end
+
+  def test_accessing_values_from_full_csv_file
+    invoice_repository = InvoiceRepository.new
+    invoice_repository.invoice_loader.load_invoices
+    assert_equal "2012-03-18 05:54:20 UTC", invoice_repository.invoices["220"].updated_at
   end
 
 end
