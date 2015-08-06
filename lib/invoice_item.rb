@@ -18,7 +18,7 @@ class InvoiceItem
     @id = id
     @item_id = item_id
     @invoice_id = invoice_id
-    @quantity = quantity
+    @quantity = quantity 
     @unit_price = unit_price
     @created_at = created_at
     @updated_at = updated_at
