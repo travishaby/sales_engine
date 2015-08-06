@@ -3,10 +3,11 @@ require_relative 'merchant_loader'
 
 class MerchantRepository
 
-  attr_reader :merchants
+  attr_reader :merchants, :merchant_file
 
-  def initialize
+  def initialize(merchant_file = './data/merchants.csv')
     @merchants = {}
+    @merchant_file = merchant_file
   end
 
   def merchant_loader
