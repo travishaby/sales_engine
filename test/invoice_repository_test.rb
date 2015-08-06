@@ -3,6 +3,13 @@ require './lib/invoice_repository'
 
 class InvoiceRepositoryTest < Minitest::Test
 
+  # def fixture_setup
+  #   invoice_repository = InvoiceRepository.new('./fixtures/invoices.csv')
+  #   invoice_repository.invoice_loader.load_invoices
+  #   invoice_repository
+  # end
+
+
   def test_repo_starts_as_empty_hash
     invoice_repository = InvoiceRepository.new
     assert invoice_repository.invoices
