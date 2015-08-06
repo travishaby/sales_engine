@@ -5,9 +5,10 @@ class InvoiceRepository
 
   attr_reader :invoices, :invoice_file
 
-  def initialize(invoice_file = './data/invoices.csv')
+  def initialize(engine = nil, invoice_file = './data/invoices.csv')
     @invoices = {}
     @invoice_file = invoice_file
+    @engine = engine
   end
 
   def invoice_loader
