@@ -38,4 +38,22 @@ class CustomerRepository
     end
   end
 
+  def find_by_created_at(created_at)
+    customers.detect do |id, object|
+      object.created_at == created_at
+    end
+  end
+
+  def find_by_updated_at(updated_at)
+    customers.detect do |id, object|
+      object.updated_at == updated_at
+    end
+  end
+
+  def find_all_by_last_name(last_name)
+    customers.select do |id, object|
+      object.last_name == last_name
+    end
+  end
+
 end

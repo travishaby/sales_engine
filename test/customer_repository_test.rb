@@ -88,7 +88,24 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal "Barrows", fixture_setup.find_by_last_name("Barrows")[1].last_name
   end
 
+  def test_returns_single_object_with_matching_created_at
+    assert_equal "2012-03-27 14:54:32 UTC",
+    fixture_setup.find_by_created_at("2012-03-27 14:54:32 UTC")[1].created_at
+  end
+
+  def test_returns_single_object_with_matching_updated_at
+    assert_equal "2012-03-27 14:54:32 UTC",
+    fixture_setup.find_by_updated_at("2012-03-27 14:54:32 UTC")[1].updated_at
+  end
 
 
+
+  def test_find_all_by_last_name
+    assert_equal 2, fixture_setup.find_all_by_last_name("Barrows").size
+  end
+
+  def test_find_all_by_last_name_with_specific_keys
+    assert_equal ["91", "100"], fixture_setup.find_all_by_last_name("Barrows").keys
+  end
 
 end
