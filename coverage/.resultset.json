@@ -1,12 +1,16 @@
 {
   "Unit Tests": {
     "coverage": {
+<<<<<<< HEAD
       "/Users/travishaby/turing/module-1/sales_engine/lib/merchant_loader.rb": [
         1,
         null,
+=======
+      "/Users/mbburch/turing/module-1/sales_engine/test/test_helper.rb": [
+>>>>>>> adding_merchant_fixtures
         1,
-        null,
         1,
+<<<<<<< HEAD
         0,
         null,
         null,
@@ -29,11 +33,18 @@
         1,
         1,
         null,
+=======
+        1,
+        1
+      ],
+      "/Users/mbburch/turing/module-1/sales_engine/lib/merchant_loader.rb": [
+>>>>>>> adding_merchant_fixtures
         1,
         null,
         1,
         null,
         1,
+<<<<<<< HEAD
         0,
         null,
         null,
@@ -44,22 +55,39 @@
         null
       ],
       "/Users/travishaby/turing/module-1/sales_engine/lib/merchant.rb": [
-        1,
-        null,
-        1,
-        null,
-        null,
+=======
         null,
         null,
         1,
+        4,
+        4,
+        null,
+        null,
+>>>>>>> adding_merchant_fixtures
+        1,
+        202,
+        null,
+        null,
+        1,
+        null,
+        null,
+        2,
+        200,
+        null,
+<<<<<<< HEAD
+        1,
         0,
         0,
         0,
         0,
+=======
+        2,
+>>>>>>> adding_merchant_fixtures
         null,
         null,
         null
       ],
+<<<<<<< HEAD
       "/Users/travishaby/turing/module-1/sales_engine/test/merchant_repository_test.rb": [
         1,
         1,
@@ -143,10 +171,14 @@
       ],
       "/Users/travishaby/turing/module-1/sales_engine/test/sales_engine_test.rb": [
         1,
+=======
+      "/Users/mbburch/turing/module-1/sales_engine/lib/merchant_repository.rb": [
+>>>>>>> adding_merchant_fixtures
         1,
         null,
         1,
         null,
+<<<<<<< HEAD
         null,
         null
       ],
@@ -169,12 +201,16 @@
         null,
         1,
         null,
+=======
+        1,
+>>>>>>> adding_merchant_fixtures
         null,
         null,
         null,
         null,
         null,
         1,
+<<<<<<< HEAD
         0,
         0,
         0,
@@ -260,6 +296,12 @@
         null,
         1,
         null,
+=======
+        null,
+        1,
+        4,
+        4,
+>>>>>>> adding_merchant_fixtures
         null,
         0,
         0,
@@ -281,6 +323,7 @@
         1,
         null,
         1,
+<<<<<<< HEAD
         null,
         1,
         0,
@@ -312,16 +355,23 @@
         0,
         0,
         0,
+=======
+        4,
+>>>>>>> adding_merchant_fixtures
         null,
         null,
         null
       ],
+<<<<<<< HEAD
       "/Users/travishaby/turing/module-1/sales_engine/test/transaction_repository_test.rb": [
         1,
         1,
         null,
         1,
         null,
+=======
+      "/Users/mbburch/turing/module-1/sales_engine/lib/merchant.rb": [
+>>>>>>> adding_merchant_fixtures
         1,
         0,
         0,
@@ -332,18 +382,7 @@
         0,
         null,
         null,
-        1,
-        0,
-        0,
-        0,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
-        null,
-        null,
+<<<<<<< HEAD
         1,
         0,
         0,
@@ -368,8 +407,23 @@
         0,
         null,
         null,
+        1,
+        0,
+        0,
+        0,
+        null,
         null,
         1,
+        0,
+        0,
+        0,
+=======
+>>>>>>> adding_merchant_fixtures
+        null,
+        null,
+        null,
+        1,
+<<<<<<< HEAD
         0,
         0,
         0,
@@ -420,11 +474,21 @@
         null,
         null,
         null,
+=======
+        202,
+        202,
+        202,
+        202,
+>>>>>>> adding_merchant_fixtures
         null,
         null,
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1438821445
+=======
+    "timestamp": 1438828612
+>>>>>>> adding_merchant_fixtures
   }
 }

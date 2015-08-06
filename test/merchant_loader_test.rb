@@ -2,12 +2,9 @@ gem 'simplecov', :require => false, :group => :test
 require 'simplecov'
 SimpleCov.start
 
-require 'pry'
-require 'minitest/autorun'
-require 'minitest/pride'
+require_relative 'test_helper'
 require './lib/merchant_loader'
 require './lib/merchant_repository'
-require './test/merchant_repository_test'
 
 class MerchantLoaderTest < Minitest::Test
 
@@ -25,7 +22,13 @@ class MerchantLoaderTest < Minitest::Test
     assert_equal "name1", result
   end
 
-  def test_that_csv_values_are_imported_from_file
+  def test_accessing_fixture_values
+    merchant_repository = MerchantRepository.new('./fixtures/merchants.csv')
+    assert_equal merchant_repository.merchants,
+    merchant_repository.merchant_loader.load_merchants
+  end
+
+  def test_that_csv_values_are_imported_from_real_csv_file
     merchant_repository = MerchantRepository.new
     assert_equal merchant_repository.merchants,
     merchant_repository.merchant_loader.load_merchants

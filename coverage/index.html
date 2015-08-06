@@ -14,7 +14,11 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
+<<<<<<< HEAD
       <div class="timestamp">Generated <abbr class="timeago" title="2015-08-05T18:37:25-06:00">2015-08-05T18:37:25-06:00</abbr></div>
+=======
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-08-05T20:36:52-06:00">2015-08-05T20:36:52-06:00</abbr></div>
+>>>>>>> adding_merchant_fixtures
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -24,17 +28,29 @@
     (<span class="covered_percent"><span class="red">44.95%</span></span>
      covered at
      <span class="covered_strength">
+<<<<<<< HEAD
        <span class="red">
          0.45
+=======
+       <span class="green">
+         39.17
+>>>>>>> adding_merchant_fixtures
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
+<<<<<<< HEAD
     <b>13</b> files in total.
     <b>198</b> relevant lines. 
     <span class="green"><b>89</b> lines covered</span> and
     <span class="red"><b>109</b> lines missed </span>
+=======
+    <b>4</b> files in total.
+    <b>32</b> relevant lines. 
+    <span class="green"><b>32</b> lines covered</span> and
+    <span class="red"><b>0</b> lines missed </span>
+>>>>>>> adding_merchant_fixtures
   </div>
   <table class="file_list">
     <thead>
@@ -55,6 +71,7 @@
         <td class="red strong">42.86 %</td>
         <td>15</td>
         <td>7</td>
+<<<<<<< HEAD
         <td>3</td>
         <td>4</td>
         <td>0.4</td>
@@ -146,6 +163,39 @@
         <td>7</td>
         <td>3</td>
         <td>3</td>
+=======
+        <td>7</td>
+        <td>0</td>
+        <td>115.9</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#c184bd13dae0dd336b4087fe629c74972ceddf11" class="src_link" title="lib/merchant_loader.rb">lib/merchant_loader.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>26</td>
+        <td>12</td>
+        <td>12</td>
+        <td>0</td>
+        <td>35.0</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#020a601ad9f195355df5692f0a4e2cb01a240d19" class="src_link" title="lib/merchant_repository.rb">lib/merchant_repository.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>17</td>
+        <td>9</td>
+        <td>9</td>
+        <td>0</td>
+        <td>2.0</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#f4b79aee9250e9905bc3924b5e83101242201fb2" class="src_link" title="test/test_helper.rb">test/test_helper.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>4</td>
+        <td>4</td>
+        <td>4</td>
+>>>>>>> adding_merchant_fixtures
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -258,26 +308,46 @@
           <code class="ruby">  def initialize(id = nil, name = nil, created_at = nil, updated_at = nil)</code>
         </li>
       
+<<<<<<< HEAD
         <li class="missed" data-hits="0" data-linenumber="9">
           
+=======
+        <li class="covered" data-hits="202" data-linenumber="9">
+          <span class="hits">202</span>
+>>>>>>> adding_merchant_fixtures
           
           <code class="ruby">    @id = id</code>
         </li>
       
+<<<<<<< HEAD
         <li class="missed" data-hits="0" data-linenumber="10">
           
+=======
+        <li class="covered" data-hits="202" data-linenumber="10">
+          <span class="hits">202</span>
+>>>>>>> adding_merchant_fixtures
           
           <code class="ruby">    @name = name.to_s.delete(&quot;\&quot;&quot;)</code>
         </li>
       
+<<<<<<< HEAD
         <li class="missed" data-hits="0" data-linenumber="11">
           
+=======
+        <li class="covered" data-hits="202" data-linenumber="11">
+          <span class="hits">202</span>
+>>>>>>> adding_merchant_fixtures
           
           <code class="ruby">    @created_at = created_at</code>
         </li>
       
+<<<<<<< HEAD
         <li class="missed" data-hits="0" data-linenumber="12">
           
+=======
+        <li class="covered" data-hits="202" data-linenumber="12">
+          <span class="hits">202</span>
+>>>>>>> adding_merchant_fixtures
           
           <code class="ruby">    @updated_at = updated_at</code>
         </li>
@@ -309,9 +379,15 @@
     <h3>lib/merchant_loader.rb</h3>
     <h4><span class="red">50.0 %</span> covered</h4>
     <div>
+<<<<<<< HEAD
       <b>10</b> relevant lines. 
       <span class="green"><b>5</b> lines covered</span> and
       <span class="red"><b>5</b> lines missed.</span>
+=======
+      <b>12</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+>>>>>>> adding_merchant_fixtures
     </div>
   </div>
   
@@ -321,7 +397,7 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">class MerchantLoader</code>
+          <code class="ruby">require &#39;csv&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="2">
@@ -333,7 +409,7 @@
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">  attr_reader :merchant_repository</code>
+          <code class="ruby">class MerchantLoader</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
@@ -345,37 +421,47 @@
         <li class="covered" data-hits="1" data-linenumber="5">
           <span class="hits">1</span>
           
-          <code class="ruby">  def initialize(merchant_repository)</code>
+          <code class="ruby">  attr_reader :merchant_repository,</code>
         </li>
       
+<<<<<<< HEAD
         <li class="missed" data-hits="0" data-linenumber="6">
           
+=======
+        <li class="never" data-hits="" data-linenumber="6">
+>>>>>>> adding_merchant_fixtures
           
-          <code class="ruby">    @merchant_repository = merchant_repository</code>
+          
+          <code class="ruby">  :merchant_file</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="7">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="8">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="9">
+        <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
-          <code class="ruby">  def add_merchant(id, name, created_at, updated_at)</code>
+          <code class="ruby">  def initialize(merchant_repository)</code>
         </li>
       
+        <li class="covered" data-hits="4" data-linenumber="9">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    @merchant_repository = merchant_repository</code>
+        </li>
+      
+<<<<<<< HEAD
         <li class="missed" data-hits="0" data-linenumber="10">
           
+=======
+        <li class="covered" data-hits="4" data-linenumber="10">
+          <span class="hits">4</span>
+>>>>>>> adding_merchant_fixtures
           
-          <code class="ruby">    merchant_repository.merchants[id] = Merchant.new(id, name, created_at, updated_at)</code>
+          <code class="ruby">    @merchant_file       = merchant_repository.merchant_file</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
@@ -393,18 +479,19 @@
         <li class="covered" data-hits="1" data-linenumber="13">
           <span class="hits">1</span>
           
-          <code class="ruby">  def load_merchants</code>
+          <code class="ruby">  def add_merchant(id, name, created_at, updated_at)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="covered" data-hits="202" data-linenumber="14">
+          <span class="hits">202</span>
           
-          
-          <code class="ruby">    CSV.foreach(&#39;./data/merchants.csv&#39;,</code>
+          <code class="ruby">    merchant_repository.merchants[id] = Merchant.new(id, name, created_at, updated_at)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
           
           
+<<<<<<< HEAD
           <code class="ruby">                headers: true,</code>
         </li>
       
@@ -481,23 +568,38 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="3">
+=======
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+>>>>>>> adding_merchant_fixtures
           
           
           <code class="ruby"></code>
         </li>
       
+<<<<<<< HEAD
         <li class="covered" data-hits="1" data-linenumber="4">
+=======
+        <li class="covered" data-hits="1" data-linenumber="17">
+>>>>>>> adding_merchant_fixtures
           <span class="hits">1</span>
           
-          <code class="ruby">class MerchantRepository</code>
+          <code class="ruby">  def load_merchants</code>
         </li>
       
+<<<<<<< HEAD
         <li class="never" data-hits="" data-linenumber="5">
+=======
+        <li class="never" data-hits="" data-linenumber="18">
+>>>>>>> adding_merchant_fixtures
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    CSV.foreach(merchant_file,</code>
         </li>
       
+<<<<<<< HEAD
         <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
@@ -505,17 +607,26 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="7">
+=======
+        <li class="never" data-hits="" data-linenumber="19">
+>>>>>>> adding_merchant_fixtures
           
           
-          <code class="ruby"></code>
+          <code class="ruby">                headers: true,</code>
         </li>
       
+<<<<<<< HEAD
         <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
+=======
+        <li class="covered" data-hits="2" data-linenumber="20">
+          <span class="hits">2</span>
+>>>>>>> adding_merchant_fixtures
           
-          <code class="ruby">  def initialize</code>
+          <code class="ruby">                header_converters: :symbol) do |row|</code>
         </li>
       
+<<<<<<< HEAD
         <li class="missed" data-hits="0" data-linenumber="9">
           
           
@@ -542,23 +653,51 @@
       
         <li class="missed" data-hits="0" data-linenumber="13">
           
+=======
+        <li class="covered" data-hits="200" data-linenumber="21">
+          <span class="hits">200</span>
           
-          <code class="ruby">    MerchantLoader.new(self)</code>
+          <code class="ruby">      add_merchant(row[:id], row[:name], row[:created_at], row[:updated_at])</code>
         </li>
       
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="23">
+          <span class="hits">2</span>
+>>>>>>> adding_merchant_fixtures
+          
+          <code class="ruby">    merchant_repository.merchants</code>
+        </li>
+      
+<<<<<<< HEAD
         <li class="never" data-hits="" data-linenumber="14">
+=======
+        <li class="never" data-hits="" data-linenumber="24">
+>>>>>>> adding_merchant_fixtures
           
           
           <code class="ruby">  end</code>
         </li>
       
+<<<<<<< HEAD
         <li class="never" data-hits="" data-linenumber="15">
+=======
+        <li class="never" data-hits="" data-linenumber="25">
+>>>>>>> adding_merchant_fixtures
           
           
           <code class="ruby"></code>
         </li>
       
+<<<<<<< HEAD
         <li class="never" data-hits="" data-linenumber="16">
+=======
+        <li class="never" data-hits="" data-linenumber="26">
+>>>>>>> adding_merchant_fixtures
           
           
           <code class="ruby">end</code>
@@ -568,6 +707,7 @@
   </pre>
 </div>
       
+<<<<<<< HEAD
         <div class="source_table" id="bee6c99f984d36d9dfd1313640852a5fd2bd11b7">
   <div class="header">
     <h3>lib/sales_engine.rb</h3>
@@ -576,6 +716,16 @@
       <b>22</b> relevant lines. 
       <span class="green"><b>16</b> lines covered</span> and
       <span class="red"><b>6</b> lines missed.</span>
+=======
+        <div class="source_table" id="020a601ad9f195355df5692f0a4e2cb01a240d19">
+  <div class="header">
+    <h3>lib/merchant_repository.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>9</b> relevant lines. 
+      <span class="green"><b>9</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+>>>>>>> adding_merchant_fixtures
     </div>
   </div>
   
@@ -585,25 +735,41 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
+<<<<<<< HEAD
           <code class="ruby">require &#39;csv&#39;</code>
+=======
+          <code class="ruby">require_relative &#39;merchant&#39;</code>
+>>>>>>> adding_merchant_fixtures
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="2">
           <span class="hits">1</span>
           
+<<<<<<< HEAD
           <code class="ruby">require_relative &#39;merchant&#39;</code>
+=======
+          <code class="ruby">require_relative &#39;merchant_loader&#39;</code>
+>>>>>>> adding_merchant_fixtures
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="3">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="3">
           
+          
+<<<<<<< HEAD
           <code class="ruby">require_relative &#39;merchant_repository&#39;</code>
+=======
+          <code class="ruby"></code>
+>>>>>>> adding_merchant_fixtures
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
+<<<<<<< HEAD
           <code class="ruby">require_relative &#39;invoice&#39;</code>
+=======
+          <code class="ruby">class MerchantRepository</code>
+>>>>>>> adding_merchant_fixtures
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="5">
@@ -615,7 +781,11 @@
         <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
+<<<<<<< HEAD
           <code class="ruby">require_relative &#39;item&#39;</code>
+=======
+          <code class="ruby">  attr_reader :merchants, :merchant_file</code>
+>>>>>>> adding_merchant_fixtures
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="7">
@@ -627,19 +797,31 @@
         <li class="covered" data-hits="1" data-linenumber="8">
           <span class="hits">1</span>
           
+<<<<<<< HEAD
           <code class="ruby">require_relative &#39;invoice_item&#39;</code>
+=======
+          <code class="ruby">  def initialize(merchant_file = &#39;./data/merchants.csv&#39;)</code>
+>>>>>>> adding_merchant_fixtures
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="9">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="9">
+          <span class="hits">4</span>
           
+<<<<<<< HEAD
           <code class="ruby">require_relative &#39;invoice_item_repository&#39;</code>
+=======
+          <code class="ruby">    @merchants = {}</code>
+>>>>>>> adding_merchant_fixtures
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="10">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="10">
+          <span class="hits">4</span>
           
+<<<<<<< HEAD
           <code class="ruby">require_relative &#39;customer&#39;</code>
+=======
+          <code class="ruby">    @merchant_file = merchant_file</code>
+>>>>>>> adding_merchant_fixtures
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="11">
@@ -657,6 +839,7 @@
         <li class="covered" data-hits="1" data-linenumber="13">
           <span class="hits">1</span>
           
+<<<<<<< HEAD
           <code class="ruby">require_relative &#39;transaction_repository&#39;</code>
         </li>
       
@@ -943,18 +1126,38 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
+=======
+          <code class="ruby">  def merchant_loader</code>
+        </li>
+      
+        <li class="covered" data-hits="4" data-linenumber="14">
+          <span class="hits">4</span>
+          
+          <code class="ruby">    MerchantLoader.new(self)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+>>>>>>> adding_merchant_fixtures
           
           
           <code class="ruby">  end</code>
         </li>
       
+<<<<<<< HEAD
         <li class="never" data-hits="" data-linenumber="26">
+=======
+        <li class="never" data-hits="" data-linenumber="16">
+>>>>>>> adding_merchant_fixtures
           
           
           <code class="ruby"></code>
         </li>
       
+<<<<<<< HEAD
         <li class="never" data-hits="" data-linenumber="27">
+=======
+        <li class="never" data-hits="" data-linenumber="17">
+>>>>>>> adding_merchant_fixtures
           
           
           <code class="ruby">end</code>
@@ -964,6 +1167,7 @@
   </pre>
 </div>
       
+<<<<<<< HEAD
         <div class="source_table" id="d6266c624e35d848b59c82bfb62e2df584f71ff2">
   <div class="header">
     <h3>lib/transaction_loader.rb</h3>
@@ -972,6 +1176,16 @@
       <b>11</b> relevant lines. 
       <span class="green"><b>6</b> lines covered</span> and
       <span class="red"><b>5</b> lines missed.</span>
+=======
+        <div class="source_table" id="f4b79aee9250e9905bc3924b5e83101242201fb2">
+  <div class="header">
+    <h3>test/test_helper.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>4</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+>>>>>>> adding_merchant_fixtures
     </div>
   </div>
   
@@ -993,6 +1207,7 @@
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
+<<<<<<< HEAD
           <code class="ruby">class TransactionLoader</code>
         </li>
       
@@ -2806,6 +3021,15 @@
           
           
           <code class="ruby">end</code>
+=======
+          <code class="ruby">require &#39;rake/testtask&#39;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">require &#39;pry&#39;</code>
+>>>>>>> adding_merchant_fixtures
         </li>
       
     </ol>
