@@ -3,6 +3,18 @@ require './lib/transaction_repository'
 
 class TransactionRepositoryTest < Minitest::Test
 
+  def data_setup
+    transaction_repository = TransactionRepository.new
+    transaction_repository.transaction_loader.load_transactions
+    transaction_repository
+  end
+
+  def fixture_setup
+    transaction_repository = TransactionRepository.new(nil, './fixtures/transactions.csv')
+    transaction_repository.transaction_loader.load_transactions
+    transaction_repository
+  end
+
   def test_repo_starts_as_empty_hash
     transaction_repository = TransactionRepository.new
     assert transaction_repository.transactions
@@ -20,47 +32,33 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_accesses_transaction_id_with_id
-    transaction_repository = TransactionRepository.new
-    transaction_repository.transaction_loader.load_transactions
-    assert_equal "1", transaction_repository.transactions["1"].id
+    assert_equal "1", data_setup.transactions["1"].id
   end
 
   def test_accesses_transaction_invoice_id_with_id
-    transaction_repository = TransactionRepository.new
-    transaction_repository.transaction_loader.load_transactions
-    assert_equal "2", transaction_repository.transactions["2"].invoice_id
+    assert_equal "2", data_setup.transactions["2"].invoice_id
   end
 
   def test_accesses_transaction_credit_card_number_with_id
-    transaction_repository = TransactionRepository.new
-    transaction_repository.transaction_loader.load_transactions
-    assert_equal "4354495077693036", transaction_repository.transactions["3"].credit_card_number
+    assert_equal "4354495077693036", data_setup.transactions["3"].credit_card_number
   end
 
   def test_accesses_transaction_credit_card_expiration_date_with_id
-    transaction_repository = TransactionRepository.new
-    transaction_repository.transaction_loader.load_transactions
-    assert_equal nil, transaction_repository.transactions["4"].credit_card_expiration_date
+    assert_equal nil, data_setup.transactions["4"].credit_card_expiration_date
   end
 
   def test_accesses_transaction_created_at_with_id
-    transaction_repository = TransactionRepository.new
-    transaction_repository.transaction_loader.load_transactions
     assert_equal "2012-03-27 14:54:10 UTC",
-    transaction_repository.transactions["5"].created_at
+    data_setup.transactions["5"].created_at
   end
 
   def test_accesses_transaction_updated_at_with_id
-    transaction_repository = TransactionRepository.new
-    transaction_repository.transaction_loader.load_transactions
     assert_equal "2012-03-27 14:54:10 UTC",
-    transaction_repository.transactions["6"].updated_at
+    data_setup.transactions["6"].updated_at
   end
 
   def test_attempt_access_nonexistent_value
-    transaction_repository = TransactionRepository.new
-    transaction_repository.transaction_loader.load_transactions
-    refute transaction_repository.transactions["5600"]
+    refute data_setup.transactions["5600"]
   end
 
 end
