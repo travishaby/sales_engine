@@ -10,7 +10,7 @@ class CustomerRepository
     @customer_file = customer_file
     @engine = engine
   end
-
+ 
   def customer_loader
     CustomerLoader.new(self)
   end
