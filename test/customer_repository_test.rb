@@ -3,6 +3,12 @@ require './lib/customer_repository'
 
 class CustomerRepositoryTest < Minitest::Test
 
+  def fixture_setup
+    customer_repository = CustomerRepository.new('./fixtures/customers.csv')
+    customer_repository.customer_loader.load_customers
+    customer_repository
+  end
+
   def test_repo_starts_as_empty_hash
     customer_repository = CustomerRepository.new
     assert customer_repository.customers
@@ -55,6 +61,51 @@ class CustomerRepositoryTest < Minitest::Test
     customer_repository = CustomerRepository.new
     customer_repository.customer_loader.load_customers
     refute customer_repository.customers["1001"]
+  end
+
+  def test_that_all_returns_all_instances
+    assert_equal 100, fixture_setup.all.size
+  end
+
+  def test_random_usually_returns_different_customer
+    cust1 = fixture_setup.random
+    cust2 = fixture_setup.random
+    5.times do
+      assert cust1 != cust2
+      cust2 = fixture_setup.random
+    end
+  end
+
+  def test_returns_single_object_with_matching_id
+    assert_equal "Sylvester", fixture_setup.find_by_id("5").first_name
+  end
+
+  def test_returns_single_object_with_matching_first_name
+    assert_equal "Magnus", fixture_setup.find_by_first_name("Magnus")[1].first_name
+  end
+
+  def test_returns_single_object_with_matching_last_name
+    assert_equal "Barrows", fixture_setup.find_by_last_name("Barrows")[1].last_name
+  end
+
+  def test_returns_single_object_with_matching_created_at
+    assert_equal "2012-03-27 14:54:32 UTC",
+    fixture_setup.find_by_created_at("2012-03-27 14:54:32 UTC")[1].created_at
+  end
+
+  def test_returns_single_object_with_matching_updated_at
+    assert_equal "2012-03-27 14:54:32 UTC",
+    fixture_setup.find_by_updated_at("2012-03-27 14:54:32 UTC")[1].updated_at
+  end
+
+
+
+  def test_find_all_by_last_name
+    assert_equal 2, fixture_setup.find_all_by_last_name("Barrows").size
+  end
+
+  def test_find_all_by_last_name_with_specific_keys
+    assert_equal ["91", "100"], fixture_setup.find_all_by_last_name("Barrows").keys
   end
 
 end
