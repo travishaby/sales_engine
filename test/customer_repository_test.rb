@@ -64,7 +64,7 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_that_all_returns_all_instances
-    assert_equal 100, fixture_setup.all.size
+    assert_equal 101, fixture_setup.all.size
   end
 
   def test_random_usually_returns_different_customer
@@ -89,6 +89,14 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal "Magnus", fixture_setup.find_by_first_name("Magnus")[1].first_name
   end
 
+  def test_returns_single_object_with_case_insensitive_first_name
+    assert_equal "Magnus", fixture_setup.find_by_first_name("magnus")[1].first_name
+  end
+
+  def test_returns_single_object_with_extra_name
+    assert_equal [], fixture_setup.find_by_first_name("Mary")
+  end
+
   def test_returns_single_object_with_matching_last_name
     assert_equal "Barrows", fixture_setup.find_by_last_name("Barrows")[1].last_name
   end
@@ -103,14 +111,24 @@ class CustomerRepositoryTest < Minitest::Test
     fixture_setup.find_by_updated_at("2012-03-27 14:54:32 UTC")[1].updated_at
   end
 
+  def test_general_find_by_all_method_with_last_name_and_specific_keys
+    assert_equal ["91", "100"],
+    fixture_setup.find_by_all(:last_name,"Barrows").keys
+  end
+
   def test_general_find_by_all_method_with_last_name
     assert_equal 2,
     fixture_setup.find_by_all(:last_name,"Barrows").size
   end
 
-  def test_general_find_by_all_method_with_last_name_and_specific_keys
-    assert_equal ["91", "100"],
-    fixture_setup.find_by_all(:last_name,"Barrows").keys
+  def test_general_find_by_all_returns_empty_array_if_name_not_found
+    assert_equal [],
+    fixture_setup.find_by_all(:last_name,"Burch").keys
+  end
+
+  def test_general_find_by_all_returns_array_size_zero_if_name_not_found
+    assert_equal 0,
+    fixture_setup.find_by_all(:last_name,"Burch").size
   end
 
   def test_find_all_by_id
@@ -123,6 +141,10 @@ class CustomerRepositoryTest < Minitest::Test
 
   def test_find_all_by_first_name_with_specific_keys
     assert_equal ["47"], fixture_setup.find_all_by_first_name("Wayne").keys
+  end
+
+  def test_find_all_by_first_name_case_insensitive
+    assert_equal ["47"], fixture_setup.find_all_by_first_name("wayne").keys
   end
 
   def test_find_all_by_last_name

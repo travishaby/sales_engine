@@ -28,9 +28,10 @@ class CustomerRepository
   end
 
   def find_by(attribute, match)
-    customers.detect do |id, object|
-      object.send(attribute) == match
+    found = customers.detect do |id, object|
+      object.send(attribute).downcase == match.downcase
     end
+    found || empty = []
   end
 
   def find_by_first_name(first_name)
@@ -52,9 +53,10 @@ class CustomerRepository
   end
 
   def find_by_all(attribute, match)
-    customers.select do |id, object|
-      object.send(attribute) == match
+    found = customers.select do |id, object|
+      object.send(attribute).downcase == match.downcase
     end
+    found || empty = []
   end
 
   def find_all_by_id(id)
