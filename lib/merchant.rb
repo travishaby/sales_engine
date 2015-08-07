@@ -13,5 +13,9 @@ class Merchant
     @updated_at          = updated_at
     @merchant_repository = merchant_repository
   end
-  
+
+  def items
+    merchant_repository.items(id)
+  end
+
 end

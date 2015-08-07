@@ -69,4 +69,10 @@ class MerchantRepository
     find_by_all(:updated_at, updated_at)
   end
 
+###########RELATIONSHIP METHODS##################
+
+  def items(merchant_id)
+    engine.items(merchant_id)
+  end
+
 end

@@ -1,5 +1,7 @@
 require_relative 'test_helper'
 require './lib/merchant'
+require './lib/sales_engine'
+require './lib/merchant_repository'
 
 class MerchantTest < Minitest::Test
 
@@ -19,14 +21,19 @@ class MerchantTest < Minitest::Test
     assert merchant.updated_at
   end
 
-  def test_relationships_setup
+  def test_fixtures_setup
+    skip
     sales_engine = SalesEngine.new
     sales_engine.startup
+    sales_engine.merchant_repository.merchant_loader.load_merchants
+    sales_engine.merchant_repository
   end
 
-  def test_it_can_grab_items_with_merchant_id
+  def test_gets_items_with_merchant_id
     skip
-    assert_equal "something", relationships_setup.get_items(merchant_id)
+    result = test_fixtures_setup.find_by_name("Williamson Group")[1].items
+
+    assert_equal "something", result
   end
 
   #get_items should ask merch repo to get from SE who will go to item repo
