@@ -70,4 +70,8 @@ class MerchantRepository
     engine.items(merchant_id)
   end
 
+  def invoices(merchant_id)
+    engine.invoices(merchant_id)
+  end
+
 end
