@@ -19,4 +19,17 @@ class MerchantTest < Minitest::Test
     assert merchant.updated_at
   end
 
+  def test_relationships_setup
+    sales_engine = SalesEngine.new
+    sales_engine.startup
+  end
+
+  def test_it_can_grab_items_with_merchant_id
+    skip
+    assert_equal "something", relationships_setup.get_items(merchant_id)
+  end
+
+  #get_items should ask merch repo to get from SE who will go to item repo
+  #who will then use a find by method w/ the merchant id
+
 end

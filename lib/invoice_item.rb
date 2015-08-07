@@ -6,7 +6,8 @@ class InvoiceItem
               :quantity,
               :unit_price,
               :created_at,
-              :updated_at
+              :updated_at,
+              :invoice_item_repository
 
   def initialize(id = nil,
                  item_id = nil,
@@ -14,14 +15,16 @@ class InvoiceItem
                  quantity = nil,
                  unit_price = nil,
                  created_at = nil,
-                 updated_at = nil)
+                 updated_at = nil,
+                 invoice_item_repository = nil)
     @id = id
     @item_id = item_id
     @invoice_id = invoice_id
-    @quantity = quantity 
+    @quantity = quantity
     @unit_price = unit_price
     @created_at = created_at
     @updated_at = updated_at
+    @invoice_item_repository = invoice_item_repository
   end
 
 end

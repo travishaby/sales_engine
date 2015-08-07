@@ -11,7 +11,7 @@ class MerchantLoader
   end
 
   def add_merchant(id, name, created_at, updated_at)
-    merchant_repository.merchants[id] = Merchant.new(id, name, created_at, updated_at)
+    merchant_repository.merchants[id] = Merchant.new(id, name, created_at, updated_at, merchant_repository)
   end
 
   def load_merchants
