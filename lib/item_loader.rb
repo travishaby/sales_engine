@@ -4,9 +4,10 @@ class ItemLoader
 
   attr_reader :item_repository, :item_file
 
-  def initialize(item_repository)
+  def initialize(item_repository, item_file = './data/items.csv')
     @item_repository = item_repository
-    @item_file       = item_repository.item_file
+    @item_file       = item_file
+    self.load_items
   end
 
   def add_item(id, name, description, unit_price, merchant_id, created_at, updated_at)
