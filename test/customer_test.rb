@@ -15,5 +15,9 @@ class CustomerTest < Minitest::Test
     assert customer.created_at
     assert customer.updated_at
   end
+
   
+
+
+
 end

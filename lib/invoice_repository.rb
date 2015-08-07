@@ -81,6 +81,4 @@ class InvoiceRepository
     find_by_all(:updated_at, updated_at)
   end
 
-
-
 end
