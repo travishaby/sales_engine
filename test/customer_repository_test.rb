@@ -5,13 +5,13 @@ class CustomerRepositoryTest < Minitest::Test
 
   def data_setup
     customer_repository = CustomerRepository.new
-    customer_repository.customer_loader.load_customers
+    customer_loader = CustomerLoader.new(customer_repository)
     customer_repository
   end
 
   def fixture_setup
-    customer_repository = CustomerRepository.new(nil, './fixtures/customers.csv')
-    customer_repository.customer_loader.load_customers
+    customer_repository = CustomerRepository.new
+    customer_loader = CustomerLoader.new(customer_repository, './fixtures/customers.csv')
     customer_repository
   end
 
@@ -20,41 +20,30 @@ class CustomerRepositoryTest < Minitest::Test
     assert customer_repository.customers
   end
 
-  def test_customer_loader_object_is_created
-    customer_repository = CustomerRepository.new
-    assert customer_repository.customer_loader
-  end
-
-  def test_self_is_passed_into_customer_loader
-    customer_repository = CustomerRepository.new
-    customer_loader = customer_repository.customer_loader
-    assert_equal customer_repository, customer_loader.customer_repository
-  end
-
   def test_accesses_customer_first_name_with_id
-    assert_equal "Joey", data_setup.customers["1"].first_name
+    assert_equal "Joey", fixture_setup.customers["1"].first_name
   end
 
   def test_accesses_customer_last_name_with_id
-    assert_equal "Ondricka", data_setup.customers["1"].last_name
+    assert_equal "Ondricka", fixture_setup.customers["1"].last_name
   end
 
   def test_accesses_customer_id_with_id
-    assert_equal "2", data_setup.customers["2"].id
+    assert_equal "2", fixture_setup.customers["2"].id
   end
 
   def test_accesses_customer_created_at_with_id
     assert_equal "2012-03-27 14:54:10 UTC",
-    data_setup.customers["3"].created_at
+    fixture_setup.customers["3"].created_at
   end
 
   def test_accesses_customer_updated_at_with_id
     assert_equal "2012-03-27 14:54:10 UTC",
-    data_setup.customers["4"].updated_at
+    fixture_setup.customers["4"].updated_at
   end
 
   def test_attempt_access_nonexistent_value
-    refute data_setup.customers["1001"]
+    refute fixture_setup.customers["103"]
   end
 
   def test_that_all_returns_all_instances
