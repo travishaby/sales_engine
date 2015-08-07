@@ -5,9 +5,10 @@ class MerchantLoader
   attr_reader :merchant_repository,
   :merchant_file
 
-  def initialize(merchant_repository)
+  def initialize(merchant_repository, merchant_file = './data/merchants.csv')
     @merchant_repository = merchant_repository
-    @merchant_file       = merchant_repository.merchant_file
+    @merchant_file       = merchant_file
+    self.load_merchants
   end
 
   def add_merchant(id, name, created_at, updated_at)

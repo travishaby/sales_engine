@@ -3,16 +3,11 @@ require_relative 'item_loader'
 
 class ItemRepository
 
-  attr_reader :items, :item_file, :engine
+  attr_reader :items, :engine
 
-  def initialize(engine = nil, item_file = './data/items.csv')
+  def initialize(engine = nil)
     @items = {}
-    @item_file = item_file
     @engine = engine
-  end
-
-  def item_loader
-    ItemLoader.new(self)
   end
 
   def all
@@ -92,5 +87,5 @@ class ItemRepository
   def find_all_by_updated_at(updated_at)
     find_by_all(:updated_at, updated_at)
   end
-  
+
 end

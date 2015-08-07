@@ -5,30 +5,19 @@ class InvoiceRepositoryTest < Minitest::Test
 
   def data_setup
     invoice_repository = InvoiceRepository.new
-    invoice_repository.invoice_loader.load_invoices
+    invoice_loader = InvoiceLoader.new(invoice_repository)
     invoice_repository
   end
 
   def fixture_setup
-    invoice_repository = InvoiceRepository.new(nil, './fixtures/invoices.csv')
-    invoice_repository.invoice_loader.load_invoices
+    invoice_repository = InvoiceRepository.new
+    invoice_loader = InvoiceLoader.new(invoice_repository, './fixtures/invoices.csv')
     invoice_repository
   end
 
   def test_repo_starts_as_empty_hash
     invoice_repository = InvoiceRepository.new
     assert invoice_repository.invoices
-  end
-
-  def test_invoice_loader_object_is_created
-    invoice_repository = InvoiceRepository.new
-    assert invoice_repository.invoice_loader
-  end
-
-  def test_self_is_passed_into_invoice_loader
-    invoice_repository = InvoiceRepository.new
-    invoice_loader = invoice_repository.invoice_loader
-    assert_equal invoice_repository, invoice_loader.invoice_repository
   end
 
   def test_accesses_customer_id_with_id
