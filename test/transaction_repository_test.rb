@@ -5,30 +5,19 @@ class TransactionRepositoryTest < Minitest::Test
 
   def data_setup
     transaction_repository = TransactionRepository.new
-    transaction_repository.transaction_loader.load_transactions
+    transaction_loader = TransactionLoader.new(transaction_repository)
     transaction_repository
   end
 
   def fixture_setup
-    transaction_repository = TransactionRepository.new(nil, './fixtures/transactions.csv')
-    transaction_repository.transaction_loader.load_transactions
+    transaction_repository = TransactionRepository.new
+    transaction_loader = TransactionLoader.new(transaction_repository, './fixtures/transactions.csv')
     transaction_repository
   end
 
   def test_repo_starts_as_empty_hash
     transaction_repository = TransactionRepository.new
     assert transaction_repository.transactions
-  end
-
-  def test_transaction_loader_object_is_created
-    transaction_repository = TransactionRepository.new
-    assert transaction_repository.transaction_loader
-  end
-
-  def test_self_is_passed_into_transaction_loader
-    transaction_repository = TransactionRepository.new
-    transaction_loader = transaction_repository.transaction_loader
-    assert_equal transaction_repository, transaction_loader.transaction_repository
   end
 
   def test_accesses_transaction_id_with_id

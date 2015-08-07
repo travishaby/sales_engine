@@ -4,9 +4,10 @@ class TransactionLoader
 
   attr_reader :transaction_repository, :transaction_file
 
-  def initialize(transaction_repository)
+  def initialize(transaction_repository, transaction_file = './data/transactions.csv')
     @transaction_repository = transaction_repository
-    @transaction_file       = transaction_repository.transaction_file
+    @transaction_file       = transaction_file
+    self.load_transactions
   end
 
   def add_transaction(id,
