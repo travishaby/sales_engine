@@ -31,26 +31,49 @@ class SalesEngine
   end
 
   def startup
-    @merchant_repository ||= MerchantRepository.new(self)
-    @invoice_repository ||= InvoiceRepository.new(self)
-    @item_repository ||= ItemRepository.new(self)
+    @merchant_repository     ||= MerchantRepository.new(self)
+    @invoice_repository      ||= InvoiceRepository.new(self)
+    @item_repository         ||= ItemRepository.new(self)
     @invoice_item_repository ||= InvoiceItemRepository.new(self)
-    @customer_repository ||= CustomerRepository.new(self)
-    @transaction_repository ||= TransactionRepository.new(self)
+    @customer_repository     ||= CustomerRepository.new(self)
+    @transaction_repository  ||= TransactionRepository.new(self)
     load_repositories
   end
 
   def load_repositories
-    merchant_repository.merchant_loader
-    invoice_repository.invoice_loader
-    item_repository.item_loader
-    invoice_item_repository.invoice_item_loader
-    customer_repository.customer_loader
-    transaction_repository.transaction_loader
+    merchant_loader = MerchantLoader.new(merchant_repository)
+    invoice_loader = InvoiceLoader.new(invoice_repository)
+    item_loader = ItemLoader.new(item_repository)
+    invoice_item_loader = InvoiceItemLoader.new(invoice_item_repository)
+    customer_loader = CustomerLoader.new(customer_repository)
+    transaction_loader = TransactionLoader.new(transaction_repository)
+  end
+
+  def fixture_startup
+    @merchant_repository     ||= MerchantRepository.new(self)
+    @invoice_repository      ||= InvoiceRepository.new(self)
+    @item_repository         ||= ItemRepository.new(self)
+    @invoice_item_repository ||= InvoiceItemRepository.new(self)
+    @customer_repository     ||= CustomerRepository.new(self)
+    @transaction_repository  ||= TransactionRepository.new(self)
+    load_fixture_repositories
+  end
+
+  def load_fixture_repositories
+    merchant_loader = MerchantLoader.new(merchant_repository, './fixtures/merchants.csv')
+    invoice_loader = InvoiceLoader.new(invoice_repository, './fixtures/invoices.csv')
+    item_loader = ItemLoader.new(item_repository, './fixtures/items.csv')
+    invoice_item_loader = InvoiceItemLoader.new(invoice_item_repository, './fixtures/invoice_items.csv')
+    customer_loader = CustomerLoader.new(customer_repository, './fixtures/customers.csv')
+    transaction_loader = TransactionLoader.new(transaction_repository, './fixtures/transactions.csv')
   end
 
   def items(merchant_id)
     item_repository.find_all_by_merchant_id(merchant_id)
+  end
+
+  def invoices(merchant_id)
+    invoice_repository.find_all_by_merchant_id(merchant_id)
   end
 
 end
