@@ -4,9 +4,10 @@ class InvoiceLoader
 
   attr_reader :invoice_repository, :invoice_file
 
-  def initialize(invoice_repository)
+  def initialize(invoice_repository, invoice_file = './data/invoices.csv')
     @invoice_repository = invoice_repository
-    @invoice_file       = invoice_repository.invoice_file
+    @invoice_file       = invoice_file
+    self.load_invoices
   end
 
   def add_invoice(id, customer_id, merchant_id, status, created_at, updated_at)

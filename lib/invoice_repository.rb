@@ -3,16 +3,11 @@ require_relative 'invoice_loader'
 
 class InvoiceRepository
 
-  attr_reader :invoices, :invoice_file, :engine
+  attr_reader :invoices, :engine
 
-  def initialize(engine = nil, invoice_file = './data/invoices.csv')
+  def initialize(engine = nil)
     @invoices = {}
-    @invoice_file = invoice_file
     @engine = engine
-  end
-
-  def invoice_loader
-    InvoiceLoader.new(self)
   end
 
   def all
