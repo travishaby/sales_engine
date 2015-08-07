@@ -9,16 +9,17 @@ class ItemLoader
     @item_file       = item_repository.item_file
   end
 
-  def add_item(name, description, unit_price, merchant_id, created_at, updated_at)
+  def add_item(id, name, description, unit_price, merchant_id, created_at, updated_at)
 
-    item_repository.items[merchant_id] = Item.new(name, description, unit_price, merchant_id, created_at, updated_at)
+    item_repository.items[id] = Item.new(id, name, description, unit_price, merchant_id, created_at, updated_at)
   end
 
   def load_items
     CSV.foreach(item_file,
                 headers: true,
                 header_converters: :symbol) do |row|
-      add_item(row[:name],
+      add_item(row[:id],
+                row[:name],
                row[:description],
                row[:unit_price],
                row[:merchant_id],
