@@ -4,9 +4,10 @@ class InvoiceItemLoader
 
   attr_reader :invoice_item_repository, :invoice_item_file
 
-  def initialize(invoice_item_repository)
+  def initialize(invoice_item_repository, invoice_item_file = './data/invoice_items.csv')
     @invoice_item_repository = invoice_item_repository
-    @invoice_item_file       = invoice_item_repository.invoice_item_file
+    @invoice_item_file       = invoice_item_file
+    self.load_invoice_items
   end
 
   def add_invoice_item(id,
