@@ -4,9 +4,10 @@ class CustomerLoader
 
   attr_reader :customer_repository, :customer_file
 
-  def initialize(customer_repository)
+  def initialize(customer_repository, customer_file = './data/customers.csv' )
     @customer_repository = customer_repository
-    @customer_file       = customer_repository.customer_file
+    @customer_file       = customer_file
+    self.load_customers
   end
 
   def add_customer(id, first_name, last_name, created_at, updated_at)
