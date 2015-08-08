@@ -77,7 +77,7 @@ class CustomerRepository
 ######## RELATIONSHIP METHODS ############
 
   def invoices(customer_id)
-    engine.invoices(customer_id)
+    engine.invoices_by_customer(customer_id)
   end
 
 end

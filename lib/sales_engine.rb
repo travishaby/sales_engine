@@ -72,14 +72,20 @@ class SalesEngine
     item_repository.find_all_by_merchant_id(merchant_id)
   end
 
-  def invoices(merchant_id)
+  def invoices_by_merchant(merchant_id)
     invoice_repository.find_all_by_merchant_id(merchant_id)
   end
 
 
 
-  def invoices(customer_id)
+  def invoices_by_customer(customer_id)
     invoice_repository.find_all_by_customer_id(customer_id)
+  end
+
+
+
+  def invoices_by_transaction(invoice_id)
+    invoice_repository.find_all_by_id(invoice_id)
   end
 
 end

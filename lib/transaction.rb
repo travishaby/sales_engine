@@ -27,4 +27,8 @@ class Transaction
     @transaction_repository = transaction_repository
   end
 
+  def invoices
+    transaction_repository.invoices(invoice_id)
+  end
+
 end
