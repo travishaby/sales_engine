@@ -15,7 +15,8 @@ class CustomerLoader
                                                     first_name,
                                                     last_name,
                                                     created_at,
-                                                    updated_at)
+                                                    updated_at,
+                                                    customer_repository)
   end
 
   def load_customers

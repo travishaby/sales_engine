@@ -87,6 +87,4 @@ class InvoiceRepository
     engine.transactions(invoice_id)
   end
 
-
-
 end

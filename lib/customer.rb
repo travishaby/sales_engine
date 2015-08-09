@@ -21,4 +21,8 @@ class Customer
     @customer_repository = customer_repository
   end
 
+  def invoices
+    customer_repository.invoices(id)
+  end
+
 end

@@ -74,4 +74,10 @@ class CustomerRepository
     find_by_all(:updated_at, updated_at)
   end
 
+######## RELATIONSHIP METHODS ############
+
+  def invoices(customer_id)
+    engine.invoices_by_customer(customer_id)
+  end
+
 end
