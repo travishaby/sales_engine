@@ -82,4 +82,10 @@ class TransactionRepository
     find_by_all(:created_at, created_at)
   end
 
+  ########## RELATIONSHIP METHODS ##############
+
+  def invoices(invoice_id)
+    engine.invoices_by_transaction(invoice_id)
+  end
+
 end

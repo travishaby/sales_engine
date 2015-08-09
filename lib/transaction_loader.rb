@@ -19,10 +19,12 @@ class TransactionLoader
                       updated_at)
     transaction_repository.transactions[id] = Transaction.new(id,
                                                               invoice_id,
-                                                              credit_card_number, credit_card_expiration_date,
+                                                              credit_card_number,
+                                                              credit_card_expiration_date,
                                                               result,
                                                               created_at,
-                                                              updated_at)
+                                                              updated_at,
+                                                              transaction_repository)
   end
 
   def load_transactions
