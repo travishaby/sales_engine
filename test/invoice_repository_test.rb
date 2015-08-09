@@ -66,7 +66,7 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_returns_single_object_with_matching_id
-    assert_equal "1", fixture_setup.find_by_id("5").customer_id
+    assert_equal "1", fixture_setup.find_by_id("5")[1].customer_id
   end
 
   def test_returns_single_object_with_matching_merchant_id

@@ -18,15 +18,15 @@ class InvoiceRepository
     invoices.values.to_a.sample
   end
 
-  def find_by_id(id)
-    invoices[id]
-  end
-
   def find_by(attribute, match)
     found = invoices.detect do |id, object|
       object.send(attribute).downcase == match.downcase
     end
     found || empty = []
+  end
+
+  def find_by_id(id)
+    find_by(:id, id)
   end
 
   def find_by_customer_id(customer_id)
@@ -79,6 +79,12 @@ class InvoiceRepository
 
   def find_all_by_updated_at(updated_at)
     find_by_all(:updated_at, updated_at)
+  end
+
+  # RELATIONSHIPS
+
+  def transactions(invoice_id)
+    engine.transactions(invoice_id)
   end
 
 
