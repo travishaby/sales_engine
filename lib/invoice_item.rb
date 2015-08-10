@@ -26,5 +26,5 @@ class InvoiceItem
     @updated_at = updated_at
     @invoice_item_repository = invoice_item_repository
   end
-
+  
 end
