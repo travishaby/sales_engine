@@ -53,15 +53,15 @@ class InvoiceItemRepositoryTest < Minitest::Test
 
   def test_general_find_by_method_with_updated_at
     assert_equal "2012-03-27 14:54:09 UTC",
-    fixture_setup.find_by(:updated_at,"2012-03-27 14:54:09 UTC")[1].updated_at
+    fixture_setup.find_by(:updated_at,"2012-03-27 14:54:09 UTC").updated_at
   end
 
   def test_returns_single_object_with_matching_item_id
-    assert_equal "528", fixture_setup.find_by_item_id("528")[1].item_id
+    assert_equal "528", fixture_setup.find_by_item_id("528").item_id
   end
 
   def test_returns_single_object_unit_price
-    assert_equal "23324", fixture_setup.find_by_unit_price("23324")[1].unit_price
+    assert_equal "23324", fixture_setup.find_by_unit_price("23324").unit_price
   end
 
   def test_general_find_by_all_method_with_unit_price

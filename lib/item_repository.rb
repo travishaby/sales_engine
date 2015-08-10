@@ -18,15 +18,19 @@ class ItemRepository
     items.values.to_a.sample
   end
 
-  def find_by_id(id)
-    items[id]
-  end
+  # def find_by_id(id)
+  #   items[id]
+  # end
 
   def find_by(attribute, match)
     found = items.detect do |id, object|
       object.send(attribute).downcase == match.downcase
-    end
+    end.last
     found || empty = []
+  end
+
+  def find_by_id(id)
+    find_by(:id, id)
   end
 
   def find_by_name(name)

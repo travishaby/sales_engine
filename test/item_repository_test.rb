@@ -56,21 +56,21 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_returns_single_object_with_matching_name
-    assert_equal "Item Autem Minima", fixture_setup.find_by_name("Item Autem Minima")[1].name
+    assert_equal "Item Autem Minima", fixture_setup.find_by_name("Item Autem Minima").name
   end
 
   def test_returns_single_object_with_matching_unit_price
-    assert_equal "75107", fixture_setup.find_by_unit_price("75107")[1].unit_price
+    assert_equal "75107", fixture_setup.find_by_unit_price("75107").unit_price
   end
 
   def test_returns_single_object_with_matching_created_at
     assert_equal "2012-03-27 14:53:59 UTC",
-    fixture_setup.find_by_created_at("2012-03-27 14:53:59 UTC")[1].created_at
+    fixture_setup.find_by_created_at("2012-03-27 14:53:59 UTC").created_at
   end
 
   def test_returns_single_object_with_matching_updated_at
     assert_equal "2012-03-27 14:53:59 UTC",
-    fixture_setup.find_by_updated_at("2012-03-27 14:53:59 UTC")[1].updated_at
+    fixture_setup.find_by_updated_at("2012-03-27 14:53:59 UTC").updated_at
   end
 
   def test_general_find_by_all_method_with_name_and_specific_keys
