@@ -12,7 +12,7 @@ class ItemLoader
 
   def add_item(id, name, description, unit_price, merchant_id, created_at, updated_at)
 
-    item_repository.items[id] = Item.new(id, name, description, unit_price, merchant_id, created_at, updated_at)
+    item_repository.items[id] = Item.new(id, name, description, unit_price, merchant_id, created_at, updated_at, item_repository)
   end
 
   def load_items

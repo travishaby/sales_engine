@@ -20,4 +20,12 @@ class Item
     @item_repository = item_repository
   end
 
+  def invoice_items
+    item_repository.invoice_items(id)
+  end
+
+  def merchant
+    item_repository.merchant(merchant_id)
+  end
+
 end

@@ -18,10 +18,6 @@ class ItemRepository
     items.values.to_a.sample
   end
 
-  # def find_by_id(id)
-  #   items[id]
-  # end
-
   def find_by(attribute, match)
     found = items.detect do |id, object|
       object.send(attribute).downcase == match.downcase
@@ -90,6 +86,16 @@ class ItemRepository
 
   def find_all_by_updated_at(updated_at)
     find_by_all(:updated_at, updated_at)
+  end
+
+############## Relationship Methods ##################
+
+  def invoice_items(item_id)
+    engine.invoice_items_by_item_id(item_id)
+  end
+
+  def merchant(merchant_id)
+    engine.merchant_by_merchant_id(merchant_id)
   end
 
 end
