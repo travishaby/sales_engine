@@ -88,4 +88,14 @@ class InvoiceItemRepository
     find_by_all(:updated_at, updated_at)
   end
 
+########RELATIONSHIP METHODS############
+
+  def invoice(invoice_id)
+    engine.invoice_by_invoice_id(invoice_id)
+  end
+
+  def item(item_id)
+    engine.item_by_item_id(item_id)
+  end
+
 end

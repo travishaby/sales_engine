@@ -94,6 +94,12 @@ class InvoiceRepository
     engine.items_by_invoice(invoice_id)
   end
 
-  
+  def customer(customer_id)
+    engine.customer_by_invoice(customer_id)
+  end
+
+  def merchant(merchant_id)
+    engine.merchant_by_invoice(merchant_id)
+  end
 
 end

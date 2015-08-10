@@ -23,18 +23,20 @@ class InvoiceRelationshipsTest < Minitest::Test
   end
 
   def test_gets_items_with_invoice_id
-    skip
-    result = setup.items("20").size
-    assert_equal 4, result
+
+    result = setup.find_by_id("21").items.size
+    assert_equal 3, result
   end
 
-  def test_gets_customer_instance_associated_with_invoice_id
-    result = setup.customer("4").first_name
+  def test_gets_customer_instance_associated_with_invoice
+    result = setup.find_by_id("14").customer.first_name
     assert_equal "Leanne", result
   end
 
-  def test_gets_merchant_instance_associated_with_invoice_id
+  def test_gets_merchant_instance_associated_with_invoice
+    result = setup.find_by_id("4").merchant.name
+    assert_equal "Quitzon and Sons", result
   end
 
 
-  end
+end

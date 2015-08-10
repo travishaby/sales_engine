@@ -39,7 +39,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
   end
 
   def test_that_all_returns_all_instances
-    assert_equal 101, fixture_setup.all.size
+    assert_equal 103, fixture_setup.all.size
   end
 
   def test_random_usually_returns_different_item_id

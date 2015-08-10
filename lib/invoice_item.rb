@@ -26,5 +26,13 @@ class InvoiceItem
     @updated_at = updated_at
     @invoice_item_repository = invoice_item_repository
   end
-  
+
+  def invoice
+    invoice_item_repository.invoice(invoice_id)
+  end
+
+  def item
+    invoice_item_repository.item(item_id)
+  end
+
 end

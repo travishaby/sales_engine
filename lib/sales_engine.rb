@@ -90,12 +90,17 @@ class SalesEngine
 
   def items_by_invoice(invoice_id)
     invoice_items_by_invoice(invoice_id).collect do |invoice_item|
-      require 'pry'; binding.pry
-      item_repository.find_by_id(invoice_item.item_id)
+      item_repository.find_by_id(invoice_item[1].item_id)
     end
-    # need to then search thoses invoice items for associated items
   end
 
+  def customer_by_invoice(customer_id)
+    customer_repository.find_by_id(customer_id)
+  end
+
+  def merchant_by_invoice(merchant_id)
+    merchant_repository.find_by_id(merchant_id)
+  end
 
   # customer
 
@@ -107,6 +112,16 @@ class SalesEngine
 
   def invoices_by_transaction(invoice_id)
     invoice_repository.find_all_by_id(invoice_id)
+  end
+
+  #invoice_item
+
+  def invoice_by_invoice_id(invoice_id)
+    invoice_repository.find_by_id(invoice_id)
+  end
+
+  def item_by_item_id(item_id)
+    item_repository.find_by_id(item_id)
   end
 
   #item

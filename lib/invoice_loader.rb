@@ -16,7 +16,7 @@ class InvoiceLoader
                                                     merchant_id,
                                                     status,
                                                     created_at,
-                                                    updated_at)
+                                                    updated_at, invoice_repository)
   end
 
   def load_invoices

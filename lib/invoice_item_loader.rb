@@ -23,7 +23,8 @@ class InvoiceItemLoader
                     quantity,
                     unit_price,
                     created_at,
-                    updated_at)
+                    updated_at,
+                    invoice_item_repository)
   end
 
   def load_invoice_items

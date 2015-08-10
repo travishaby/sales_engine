@@ -32,16 +32,17 @@ class Invoice
     invoice_repository.invoice_items(id)
   end
 
+#NEED TO FIX
   def items
     invoice_repository.items(id)
   end
 
   def customer
-    invoice_repository.customer(id)
+    invoice_repository.customer(customer_id)
   end
 
-  # def merchant
-  #   invoice_repository.merchant()
-  # end
+  def merchant
+    invoice_repository.merchant(merchant_id)
+  end
 
 end
