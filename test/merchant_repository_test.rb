@@ -58,7 +58,7 @@ class MerchantRepositoryTest < Minitest::Test
 
     def test_general_find_by_method_with_updated_at
       assert_equal "2012-03-27 14:54:09 UTC",
-      fixture_setup.find_by(:updated_at,"2012-03-27 14:54:09 UTC")[1].updated_at
+      fixture_setup.find_by(:updated_at,"2012-03-27 14:54:09 UTC").updated_at
     end
 
     def test_returns_single_object_with_matching_id
@@ -66,21 +66,21 @@ class MerchantRepositoryTest < Minitest::Test
     end
 
     def test_returns_single_object_with_matching_name
-      assert_equal "Fahey-Stiedemann", fixture_setup.find_by_name("Fahey-Stiedemann")[1].name
+      assert_equal "Fahey-Stiedemann", fixture_setup.find_by_name("Fahey-Stiedemann").name
     end
 
     def test_returns_single_object_with_case_insensitive_name
-      assert_equal "Fahey-Stiedemann", fixture_setup.find_by_name("fahey-stiedemann")[1].name
+      assert_equal "Fahey-Stiedemann", fixture_setup.find_by_name("fahey-stiedemann").name
     end
 
     def test_returns_single_object_with_matching_created_at
       assert_equal "2012-03-27 14:54:00 UTC",
-      fixture_setup.find_by_created_at("2012-03-27 14:54:00 UTC")[1].created_at
+      fixture_setup.find_by_created_at("2012-03-27 14:54:00 UTC").created_at
     end
 
     def test_returns_single_object_with_matching_updated_at
       assert_equal "2012-03-27 14:54:00 UTC",
-      fixture_setup.find_by_updated_at("2012-03-27 14:54:00 UTC")[1].updated_at
+      fixture_setup.find_by_updated_at("2012-03-27 14:54:00 UTC").updated_at
     end
 
     def test_general_find_by_all_method_with_name_and_specific_keys

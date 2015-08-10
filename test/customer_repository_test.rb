@@ -61,7 +61,7 @@ class CustomerRepositoryTest < Minitest::Test
 
   def test_general_find_by_method_with_updated_at
     assert_equal "2012-03-27 14:54:32 UTC",
-    fixture_setup.find_by(:updated_at,"2012-03-27 14:54:32 UTC")[1].updated_at
+    fixture_setup.find_by(:updated_at,"2012-03-27 14:54:32 UTC").updated_at
   end
 
   def test_returns_single_object_with_matching_id
@@ -69,11 +69,11 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_returns_single_object_with_matching_first_name
-    assert_equal "Magnus", fixture_setup.find_by_first_name("Magnus")[1].first_name
+    assert_equal "Magnus", fixture_setup.find_by_first_name("Magnus").first_name
   end
 
   def test_returns_single_object_with_case_insensitive_first_name
-    assert_equal "Magnus", fixture_setup.find_by_first_name("magnus")[1].first_name
+    assert_equal "Magnus", fixture_setup.find_by_first_name("magnus").first_name
   end
 
   def test_returns_single_object_with_extra_name
@@ -81,17 +81,17 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_returns_single_object_with_matching_last_name
-    assert_equal "Barrows", fixture_setup.find_by_last_name("Barrows")[1].last_name
+    assert_equal "Barrows", fixture_setup.find_by_last_name("Barrows").last_name
   end
 
   def test_returns_single_object_with_matching_created_at
     assert_equal "2012-03-27 14:54:32 UTC",
-    fixture_setup.find_by_created_at("2012-03-27 14:54:32 UTC")[1].created_at
+    fixture_setup.find_by_created_at("2012-03-27 14:54:32 UTC").created_at
   end
 
   def test_returns_single_object_with_matching_updated_at
     assert_equal "2012-03-27 14:54:32 UTC",
-    fixture_setup.find_by_updated_at("2012-03-27 14:54:32 UTC")[1].updated_at
+    fixture_setup.find_by_updated_at("2012-03-27 14:54:32 UTC").updated_at
   end
 
   def test_general_find_by_all_method_with_last_name_and_specific_keys

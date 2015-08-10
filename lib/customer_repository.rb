@@ -25,7 +25,7 @@ class CustomerRepository
   def find_by(attribute, match)
     found = customers.detect do |id, object|
       object.send(attribute).downcase == match.downcase
-    end
+    end.last 
     found || empty = []
   end
 
