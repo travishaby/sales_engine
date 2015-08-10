@@ -68,7 +68,9 @@ class SalesEngine
     transaction_loader = TransactionLoader.new(transaction_repository, './fixtures/transactions.csv')
   end
 
-  def items(merchant_id)
+  # merchant
+
+  def items_by_merchant(merchant_id)
     item_repository.find_all_by_merchant_id(merchant_id)
   end
 
@@ -76,13 +78,32 @@ class SalesEngine
     invoice_repository.find_all_by_merchant_id(merchant_id)
   end
 
+  # invoice
 
+  def transactions_by_invoice(invoice_id)
+    transaction_repository.find_all_by_invoice_id(invoice_id)
+  end
+
+  def invoice_items_by_invoice(invoice_id)
+    invoice_item_repository.find_all_by_invoice_id(invoice_id)
+  end
+
+  def items_by_invoice(invoice_id)
+    invoice_items_by_invoice(invoice_id).collect do |invoice_item|
+      require 'pry'; binding.pry
+      item_repository.find_by_id(invoice_item.item_id)
+    end
+    # need to then search thoses invoice items for associated items
+  end
+
+
+  # customer
 
   def invoices_by_customer(customer_id)
     invoice_repository.find_all_by_customer_id(customer_id)
   end
 
-
+  # transaction
 
   def invoices_by_transaction(invoice_id)
     invoice_repository.find_all_by_id(invoice_id)

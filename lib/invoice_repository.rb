@@ -25,7 +25,7 @@ class InvoiceRepository
   def find_by(attribute, match)
     found = invoices.detect do |id, object|
       object.send(attribute).downcase == match.downcase
-    end
+    end.last
     found || empty = []
   end
 
@@ -43,7 +43,6 @@ class InvoiceRepository
 
   def find_by_created_at(created_at)
     find_by(:created_at, created_at)
-
   end
 
   def find_by_updated_at(updated_at)
@@ -80,5 +79,21 @@ class InvoiceRepository
   def find_all_by_updated_at(updated_at)
     find_by_all(:updated_at, updated_at)
   end
+
+  # RELATIONSHIPS
+
+  def transactions(invoice_id)
+    engine.transactions_by_invoice(invoice_id)
+  end
+
+  def invoice_items(invoice_id)
+    engine.invoice_items_by_invoice(invoice_id)
+  end
+
+  def items(invoice_id)
+    engine.items_by_invoice(invoice_id)
+  end
+
+  
 
 end

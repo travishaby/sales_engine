@@ -65,7 +65,7 @@ class TransactionRepositoryTest < Minitest::Test
 
   def test_general_find_by_method_with_invoice_id
     assert_equal "23",
-    fixture_setup.find_by(:invoice_id,"22")[1].id
+    fixture_setup.find_by(:invoice_id,"22").id
   end
 
   def test_returns_single_object_with_matching_id
@@ -73,12 +73,12 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_returns_single_object_with_matching_credit_card_number
-    assert_equal "5", fixture_setup.find_by_credit_card_number("4844518708741275")[1].id
+    assert_equal "5", fixture_setup.find_by_credit_card_number("4844518708741275").id
   end
 
   def test_returns_single_object_with_matching_result
     assert_equal "1",
-    fixture_setup.find_by_result("success")[1].id
+    fixture_setup.find_by_result("success").id
   end
 
   def test_general_find_by_all_method_with_id

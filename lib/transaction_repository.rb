@@ -26,7 +26,7 @@ class TransactionRepository
     found = transactions.detect do |id, object|
       object.send(attribute).downcase == match.downcase
     end
-    found || empty = []
+    found.last || empty = []
   end
 
   def find_by_invoice_id(invoice_id)

@@ -25,7 +25,7 @@ class InvoiceItemRepository
   def find_by(attribute, match)
     found = invoice_items.detect do |id, object|
       object.send(attribute) == match
-    end
+    end.last
     found || empty = []
   end
 

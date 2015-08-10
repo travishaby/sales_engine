@@ -24,4 +24,24 @@ class Invoice
     @invoice_repository = invoice_repository
   end
 
+  def transactions
+    invoice_repository.transactions(id)
+  end
+
+  def invoice_items
+    invoice_repository.invoice_items(id)
+  end
+
+  def items
+    invoice_repository.items(id)
+  end
+
+  def customer
+    invoice_repository.customer(id)
+  end
+
+  # def merchant
+  #   invoice_repository.merchant()
+  # end
+
 end
