@@ -38,9 +38,8 @@ class MerchantRelationshipsTest < Minitest::Test
   end
 
   def test_returns_customer_with_most_successful_transactions
-    skip
-    result = data_setup.find_by_id("94").favorite_customer
-    assert_equal "whatever", result.customer_id
+    result = data_setup.find_by_name("Terry-Moore").favorite_customer
+    assert_equal "whatever", result
   end
 
   def test_returns_customers_with_pending_invoices

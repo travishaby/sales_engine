@@ -171,12 +171,11 @@ class SalesEngine
 
   def favorite_customer(merchant_id)
     merchant_invoices = successful_invoices(merchant_id)
-
     grouped = merchant_invoices.group_by do |invoice|
       invoice.customer_id
     end
-    grouped.values[0][0] #THIS IS SO HACKY :(
-
+    grouped = grouped.values.sort_by {|array| array.size} #THIS IS SO
+    best_customer = grouped.last.size
   end
 
   # I think we need to restructure this with the date so check_transactions is also taking the date in an if/ else. if no date, run as is. if date, run as invoice_id and created_at.
