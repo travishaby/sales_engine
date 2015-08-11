@@ -73,9 +73,18 @@ class MerchantRepository
   def invoices(merchant_id)
     engine.invoices_by_merchant(merchant_id)
   end
-  
+
+# B.I
+
   def revenue(merchant_id, date = nil)
     engine.revenue(merchant_id, date)
+  end
+
+  def most_revenue(x)
+    all_revenues = merchants.keys.collect do |merchant|
+      revenue(merchant.id)
+    end
+    # sort all revenues from most to least
   end
 
 end

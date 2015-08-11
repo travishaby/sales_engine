@@ -137,10 +137,17 @@ class SalesEngine
 
 ####### Business Intelligence #######
 
-  def successful_invoices(merchant_id)
-    invoices = invoices_by_merchant(merchant_id).keys
-    invoices.select do |invoice_id|
+  def successful_invoices(merchant_id, date = nil)
+    invoice_ids = invoices_by_merchant(merchant_id).keys
+    invoice_ids = invoice_ids.select do |invoice_id|
       check_transactions(invoice_id)
+    end
+    if date
+      invoice_ids.select do |id|
+        Date.parse(invoice_repository.invoices[id].created_at[0..9]) == date
+      end
+    else
+      invoice_ids
     end
   end
 
@@ -150,17 +157,21 @@ class SalesEngine
     end
   end
 
-  def successful_items(merchant_id)
-    invoice_items = successful_invoices(merchant_id).map {|id|
+  def successful_items(merchant_id, date = nil)
+    invoice_items = successful_invoices(merchant_id, date).map {|id|
       invoice_items_by_invoice(id).values}
     invoice_items.flatten
   end
 
   def revenue(merchant_id, date = nil)
-    successful_items(merchant_id).reduce(0) do |sum, invoice_item|
+    require 'pry'; binding.pry
+    successful_items(merchant_id, date).reduce(0) do |sum, invoice_item|
       sum + (invoice_item.quantity.to_i * invoice_item.unit_price)
     end
   end
+
+  # I think we need to restructure this with the date so check_transactions is also taking the date in an if/ else. if no date, run as is. if date, run as invoice_id and created_at.
+
 
 
 end

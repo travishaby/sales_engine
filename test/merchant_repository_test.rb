@@ -129,7 +129,9 @@ class MerchantRepositoryTest < Minitest::Test
 
       #### business intelligence
   def test_most_revenue_x_returns_top_x_merchant_instances_by_revenue
-    # use merchant revenue from merchant class. Do we iterate through all merchants, calling the revenue method on each of them? Then sort. How to use big decimal? 
+    # use merchant revenue from merchant class. Do we iterate through all merchants, calling the revenue method on each of them? Then sort. How to use big decimal?
+    results = fixture_setup.most_revenue(3)
+    assert_equal "some merchants", results
   end
 
   def test_most_items_x_returns_top_x_merchant_instances_by_items_sold

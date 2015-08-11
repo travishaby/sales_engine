@@ -28,12 +28,14 @@ class MerchantRelationshipsTest < Minitest::Test
   end
 
   def test_returns_total_merchant_revenue
+    skip
     result = data_setup.find_by_name("Willms and Sons").revenue
     assert_equal BigDecimal.new("338055.54"), result
   end
 
   def test_revenue_by_date
-    # can we use the above and add a default date argument?
+    result = data_setup.find_by_name("Willms and Sons").revenue(Date.parse "Fri, 09 Mar 2012")
+    assert_equal BigDecimal.new(""), result
   end
 
   def test_returns_customer_with_most_successful_transactions
