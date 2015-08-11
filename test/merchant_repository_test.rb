@@ -127,4 +127,17 @@ class MerchantRepositoryTest < Minitest::Test
       assert_equal 8, fixture_setup.find_all_by_updated_at("2012-03-27 14:53:59 UTC").size
     end
 
+      #### business intelligence
+  def test_most_revenue_x_returns_top_x_merchant_instances_by_revenue
+    # use merchant revenue from merchant class. Do we iterate through all merchants, calling the revenue method on each of them? Then sort. How to use big decimal? 
+  end
+
+  def test_most_items_x_returns_top_x_merchant_instances_by_items_sold
+    # merchant on invoices. Items in invoice items.
+  end
+
+  def test_revenue_date_returns_total_revenue_for_date_across_all_merchants
+    # need to look at success and failure in transactions?? Sort by date and add all items quantity and unit price
+  end
+
 end

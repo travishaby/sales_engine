@@ -88,4 +88,10 @@ class TransactionRepository
     engine.invoices_by_transaction(invoice_id)
   end
 
+  ########### BUSINESS INTELLIGENCE ###############
+
+  def successful?(transaction_id)
+    transactions[transaction_id].result == "success"
+  end
+
 end
