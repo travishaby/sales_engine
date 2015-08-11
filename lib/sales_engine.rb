@@ -156,10 +156,11 @@ class SalesEngine
     invoice_items.flatten
   end
 
-  def revenue(merchant_id)
+  def revenue(merchant_id, date = nil)
     successful_items(merchant_id).reduce(0) do |sum, invoice_item|
       sum + (invoice_item.quantity.to_i * invoice_item.unit_price)
     end
   end
+
 
 end
