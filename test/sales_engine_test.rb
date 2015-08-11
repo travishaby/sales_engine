@@ -42,4 +42,8 @@ class SalesEngineTest < Minitest::Test
     assert_equal BigDecimal.new("10161.56"), result
   end
 
+  def test_case_name
+    result = setup.revenue("8")
+    assert_equal "some fucking BigDecimal", result
+  end
 end

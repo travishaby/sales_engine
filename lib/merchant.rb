@@ -22,9 +22,8 @@ class Merchant
     merchant_repository.invoices(id)
   end
 
-  def revenue
-    merchant_repository.revenue(id)
+  def revenue(date = nil)
+    merchant_repository.revenue(id, date)
   end
-
 
 end
