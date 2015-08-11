@@ -61,12 +61,12 @@ class InvoiceItemRepositoryTest < Minitest::Test
   end
 
   def test_returns_single_object_unit_price
-    assert_equal "23324", fixture_setup.find_by_unit_price("23324").unit_price
+    assert_equal 233.24, fixture_setup.find_by_unit_price(233.24).unit_price
   end
 
   def test_general_find_by_all_method_with_unit_price
     assert_equal 4,
-    fixture_setup.find_by_all(:unit_price,"85319").size
+    fixture_setup.find_by_all(:unit_price, BigDecimal.new("853.19")).size
   end
 
   def test_general_find_by_all_returns_empty_array_if_item_id_not_found

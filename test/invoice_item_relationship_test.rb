@@ -20,7 +20,7 @@ class InvoiceItemRelationshipTest < Minitest::Test
     result1 = setup.find_by_id("100").item.id
     result2 = setup.find_by_id("100").item.unit_price
     assert_equal "3", result1
-    assert_equal "32301", result2
+    assert_equal BigDecimal.new("323.01"), result2
   end
 
 

@@ -25,7 +25,7 @@ class MerchantRepository
   def find_by(attribute, match)
     found = merchants.detect do |id, object|
       object.send(attribute).downcase == match.downcase
-    end.last 
+    end.last
     found || empty = []
   end
 
@@ -72,6 +72,10 @@ class MerchantRepository
 
   def invoices(merchant_id)
     engine.invoices_by_merchant(merchant_id)
+  end
+
+  def revenue(merchant_id)
+    engine.revenue(merchant_id)
   end
 
 end

@@ -60,7 +60,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_returns_single_object_with_matching_unit_price
-    assert_equal "75107", fixture_setup.find_by_unit_price("75107").unit_price
+    assert_equal (BigDecimal.new("751.07")), fixture_setup.find_by_unit_price(BigDecimal.new("751.07")).unit_price
   end
 
   def test_returns_single_object_with_matching_created_at

@@ -1,4 +1,5 @@
 require 'csv'
+require 'bigdecimal'
 require_relative 'merchant'
 require_relative 'merchant_repository'
 require_relative 'invoice'
@@ -132,6 +133,33 @@ class SalesEngine
 
   def merchant_by_merchant_id(merchant_id)
     merchant_repository.find_by_id(merchant_id)
+  end
+
+####### Business Intelligence #######
+
+  def successful_invoices(merchant_id)
+    invoices = invoices_by_merchant(merchant_id).keys
+    invoices.select do |invoice_id|
+      check_transactions(invoice_id)
+    end
+  end
+
+  def check_transactions(invoice_id)
+    transaction_repository.find_all_by_invoice_id(invoice_id).values.any? do |transaction|
+      transaction_repository.successful?(transaction.id)
+    end
+  end
+
+  def successful_items(merchant_id)
+    invoice_items = successful_invoices(merchant_id).map {|id|
+      invoice_items_by_invoice(id).values}
+    invoice_items.flatten
+  end
+
+  def revenue(merchant_id)
+    successful_items(merchant_id).reduce(0) do |sum, invoice_item|
+      sum + (invoice_item.quantity.to_i * invoice_item.unit_price)
+    end
   end
 
 end

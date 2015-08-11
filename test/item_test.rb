@@ -3,17 +3,6 @@ require './lib/item'
 
 class ItemTest < Minitest::Test
 
-  def test_it_initializes_with_nil_values
-    item = Item.new
-    refute item.id
-    refute item.name
-    refute item.description
-    refute item.unit_price
-    refute item.merchant_id
-    refute item.created_at
-    refute item.updated_at
-  end
-
   def test_it_initializes_with_values
     item = Item.new("id", "name", "description", "unit_price", "merchant_id", "created_at", "updated_at")
     assert item.id

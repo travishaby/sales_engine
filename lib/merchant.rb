@@ -22,4 +22,9 @@ class Merchant
     merchant_repository.invoices(id)
   end
 
+  def revenue
+    merchant_repository.revenue(id)
+  end
+
+
 end

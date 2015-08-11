@@ -20,9 +20,13 @@ class ItemRepository
 
   def find_by(attribute, match)
     found = items.detect do |id, object|
-      object.send(attribute).downcase == match.downcase
-    end.last
-    found || empty = []
+      object.send(attribute) == match
+    end
+    if found.nil?
+      found = []
+    else
+      found = found.last
+    end
   end
 
   def find_by_id(id)

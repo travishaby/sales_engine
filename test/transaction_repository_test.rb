@@ -116,4 +116,13 @@ class TransactionRepositoryTest < Minitest::Test
     assert_equal 20, fixture_setup.find_all_by_updated_at("2012-03-27 14:54:10 UTC").size
   end
 
+######### BUSINESS INTELLIGENCE #############
+
+  def test_filters_for_successful_transactions
+    result1 = fixture_setup.successful?("11")
+    result2 = fixture_setup.successful?("13")    
+    refute result1
+    assert result2
+  end
+
 end
