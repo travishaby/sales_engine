@@ -28,19 +28,19 @@ class MerchantRelationshipsTest < Minitest::Test
   end
 
   def test_returns_total_merchant_revenue
-    skip
     result = data_setup.find_by_name("Willms and Sons").revenue
     assert_equal BigDecimal.new("338055.54"), result
   end
 
   def test_revenue_by_date
     result = data_setup.find_by_name("Willms and Sons").revenue(Date.parse "Fri, 09 Mar 2012")
-    assert_equal BigDecimal.new(""), result
+    assert_equal BigDecimal.new("8373.29"), result
   end
 
   def test_returns_customer_with_most_successful_transactions
-    # find all invoices with merchant id.
-
+    skip
+    result = data_setup.find_by_id("94").favorite_customer
+    assert_equal "whatever", result.customer_id
   end
 
   def test_returns_customers_with_pending_invoices

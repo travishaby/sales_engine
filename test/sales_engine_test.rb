@@ -16,8 +16,8 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_successful_invoices
-    result = setup.successful_invoices("8")
-    assert_equal ["12"], result
+    result = setup.successful_invoices("8")[0].id
+    assert_equal "12", result
   end
   #
   # def test_successful_invoices_with_all_data
@@ -26,8 +26,10 @@ class SalesEngineTest < Minitest::Test
   # end
 
   def test_check_transactions
-    result1 = setup.check_transactions("12")
-    result2 = setup.check_transactions("13")
+    invoice1 = setup.invoice_repository.find_by_id("12")
+    invoice2 = setup.invoice_repository.find_by_id("13")
+    result1 = setup.check_transactions(invoice1)
+    result2 = setup.check_transactions(invoice2)
     assert result1
     refute result2
   end

@@ -26,4 +26,7 @@ class Merchant
     merchant_repository.revenue(id, date)
   end
 
+  def favorite_customer
+    merchant_repository.favorite_customer(id)
+  end
 end

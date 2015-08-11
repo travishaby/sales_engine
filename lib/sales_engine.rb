@@ -138,36 +138,45 @@ class SalesEngine
 ####### Business Intelligence #######
 
   def successful_invoices(merchant_id, date = nil)
-    invoice_ids = invoices_by_merchant(merchant_id).keys
-    invoice_ids = invoice_ids.select do |invoice_id|
-      check_transactions(invoice_id)
+    invoices = invoices_by_merchant(merchant_id)
+    invoices = invoices.values.select do |invoice|
+      check_transactions(invoice)
     end
     if date
-      invoice_ids.select do |id|
-        Date.parse(invoice_repository.invoices[id].created_at[0..9]) == date
+      invoices.select do |invoice|
+        Date.parse(invoice_repository.invoices[invoice.id].created_at[0..9]) == date
       end
     else
-      invoice_ids
+      invoices
     end
   end
 
-  def check_transactions(invoice_id)
-    transaction_repository.find_all_by_invoice_id(invoice_id).values.any? do |transaction|
+  def check_transactions(invoice)
+    transaction_repository.find_all_by_invoice_id(invoice.id).values.any? do |transaction|
       transaction_repository.successful?(transaction.id)
     end
   end
 
   def successful_items(merchant_id, date = nil)
-    invoice_items = successful_invoices(merchant_id, date).map {|id|
-      invoice_items_by_invoice(id).values}
+    invoice_items = successful_invoices(merchant_id, date).map {|invoice|
+      invoice_items_by_invoice(invoice.id).values}
     invoice_items.flatten
   end
 
   def revenue(merchant_id, date = nil)
-    require 'pry'; binding.pry
     successful_items(merchant_id, date).reduce(0) do |sum, invoice_item|
       sum + (invoice_item.quantity.to_i * invoice_item.unit_price)
     end
+  end
+
+  def favorite_customer(merchant_id)
+    merchant_invoices = successful_invoices(merchant_id)
+
+    grouped = merchant_invoices.group_by do |invoice|
+      invoice.customer_id
+    end
+    grouped.values[0][0] #THIS IS SO HACKY :(
+
   end
 
   # I think we need to restructure this with the date so check_transactions is also taking the date in an if/ else. if no date, run as is. if date, run as invoice_id and created_at.

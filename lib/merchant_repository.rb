@@ -80,6 +80,10 @@ class MerchantRepository
     engine.revenue(merchant_id, date)
   end
 
+  def favorite_customer(merchant_id)
+    engine.favorite_customer(merchant_id)
+  end
+
   def most_revenue(x)
     all_revenues = merchants.keys.collect do |merchant|
       revenue(merchant.id)
