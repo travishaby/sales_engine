@@ -139,19 +139,29 @@ class SalesEngine
 
   def successful_invoices(merchant_id, date = nil)
     invoices = invoices_by_merchant(merchant_id)
-    invoices = invoices.values.select do |invoice|
-      check_transactions(invoice)
-    end
+    successful_invoices = filter_successful_invoices(invoices)
     if date
-      invoices.select do |invoice|
-        Date.parse(invoice_repository.invoices[invoice.id].created_at[0..9]) == date
+      successful_invoices.select do |invoice|
+        same_date?(invoice, date)
       end
     else
-      invoices
+      successful_invoices
     end
   end
 
-  def check_transactions(invoice)
+  def filter_successful_invoices(invoices)
+    invoices.values.select do |invoice|
+      any_successful_transactions?(invoice)
+    end
+  end
+
+  def same_date?(invoice, date)
+    invoices_by_id = invoice_repository.invoices[invoice.id]
+    created_at = invoices_by_id.created_at[0..9]
+    Date.parse(created_at) == date
+  end
+
+  def any_successful_transactions?(invoice)
     transaction_repository.find_all_by_invoice_id(invoice.id).values.any? do |transaction|
       transaction_repository.successful?(transaction.id)
     end
