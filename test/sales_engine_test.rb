@@ -25,11 +25,11 @@ class SalesEngineTest < Minitest::Test
   #   assert_equal ["12"], result
   # end
 
-  def test_check_transactions
+  def test_any_successful_transactions
     invoice1 = setup.invoice_repository.find_by_id("12")
     invoice2 = setup.invoice_repository.find_by_id("13")
-    result1 = setup.check_transactions(invoice1)
-    result2 = setup.check_transactions(invoice2)
+    result1 = setup.any_successful_transactions?(invoice1)
+    result2 = setup.any_successful_transactions?(invoice2)
     assert result1
     refute result2
   end

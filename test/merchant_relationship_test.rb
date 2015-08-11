@@ -33,14 +33,17 @@ class MerchantRelationshipsTest < Minitest::Test
   end
 
   def test_revenue_by_date
-    result = data_setup.find_by_name("Willms and Sons").revenue(Date.parse "Fri, 09 Mar 2012")
-    assert_equal BigDecimal.new("8373.29"), result
+    date = Date.parse "Fri, 09 Mar 2012"
+    merchant = data_setup.find_by_name("Willms and Sons")
+    expected_revenue_for_date = BigDecimal.new("8373.29")
+    result = merchant.revenue(date)
+    assert_equal expected_revenue_for_date, result
   end
 
   def test_returns_customer_with_most_successful_transactions
     skip
-    result = data_setup.find_by_id("94").favorite_customer
-    assert_equal "whatever", result.customer_id
+    result = data_setup.find_by_name("Terry-Moore").favorite_customer
+    assert_equal "whatever", result
   end
 
   def test_returns_customers_with_pending_invoices
