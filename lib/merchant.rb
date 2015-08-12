@@ -78,7 +78,8 @@ class Merchant
       invoice.customer_id
     end
     sorted = grouped.values.sort_by {|array| array.size}
-    best_customer = grouped.last.size
+    best_customer_invoice = sorted.last[0]
+    customer_name = best_customer_invoice.customer
   end
 
 end

@@ -40,13 +40,6 @@ class MerchantRelationshipsTest < Minitest::Test
     assert_equal expected_revenue_for_date, result
   end
 
-  def test_returns_customer_with_most_successful_transactions
-    skip
-    result = data_setup.find_by_name("Terry-Moore").favorite_customer
-    assert_equal "whatever", result
-  end
-
-
   def test_finding_successful_items
   result = setup.find_by_id(8).successful_items.size
   assert_equal 6, result
@@ -57,8 +50,13 @@ class MerchantRelationshipsTest < Minitest::Test
     assert_equal BigDecimal.new("10161.56"), result
   end
 
+
+  def test_returns_customer_with_most_successful_transactions    result = data_setup.find_by_name("Terry-Moore").favorite_customer
+    assert_equal "Jayme", result.first_name
+  end
+
   def test_returns_customers_with_pending_invoices
-    #all invoices say shipped??
+    result = setup.find_by_id(13).customers_with_pending_invoices
   end
 
 end
