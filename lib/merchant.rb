@@ -77,7 +77,7 @@ class Merchant
     end.flatten
   end
 
-  def practice_items_sold(date = nil)
+  def items_sold(date = nil)
     successful_items(date).reduce(0) do |sum, invoice_item|
       sum + invoice_item.quantity
     end

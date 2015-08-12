@@ -30,11 +30,11 @@ class InvoiceItem
   end
 
   def invoice
-    invoice_item_repository.invoice(invoice_id)
+    @invoice ||= invoice_item_repository.invoice(invoice_id)
   end
 
   def item
-    invoice_item_repository.item(item_id)
+    @item ||= invoice_item_repository.item(item_id)
   end
 
   def total_cost

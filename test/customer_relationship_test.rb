@@ -1,7 +1,6 @@
 require_relative 'test_helper'
 require './lib/customer'
 require './lib/sales_engine'
-require './lib/customer_repository'
 
 class CustomerRelationshipTest < Minitest::Test
 
@@ -14,6 +13,20 @@ class CustomerRelationshipTest < Minitest::Test
   def test_gets_items_with_customer_id
     result = setup.find_by_id(4).invoices.size
     assert_equal 8, result
+  end
+
+  ######### BUSINESS INTELLIGENCE #########
+
+  def test_transactions_returns_customer_transactions
+    customer = setup.find_by_id(2)
+    result = customer.transactions.size
+    assert_equal 1, result
+  end
+
+  def test_favorite_merchant_for_customer
+    customer = setup.find_by_id(2)
+    result = customer.favorite_merchant.name
+    assert_equal "Shields, Hirthe and Smith", result
   end
 
 end

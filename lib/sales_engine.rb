@@ -64,14 +64,15 @@ class SalesEngine
     merchant_loader = MerchantLoader.new(merchant_repository,
                                         './fixtures/merchants.csv')
     invoice_loader = InvoiceLoader.new(invoice_repository,
-                                        './fixtures/invoices.csv')
-    item_loader = ItemLoader.new(item_repository, './fixtures/items.csv')
+                                      './fixtures/invoices.csv')
+    item_loader = ItemLoader.new(item_repository,
+                                './fixtures/items.csv')
     invoice_item_loader = InvoiceItemLoader.new(invoice_item_repository,
-      './fixtures/invoice_items.csv')
+                                                './fixtures/invoice_items.csv')
     customer_loader = CustomerLoader.new(customer_repository,
                                          './fixtures/customers.csv')
     transaction_loader = TransactionLoader.new(transaction_repository,
-      './fixtures/transactions.csv')
+                                              './fixtures/transactions.csv')
   end
 
   # merchant
@@ -139,6 +140,5 @@ class SalesEngine
   def merchant_by_merchant_id(merchant_id)
     merchant_repository.find_by_id(merchant_id)
   end
-
 
 end
