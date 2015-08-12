@@ -72,19 +72,19 @@ class Merchant
   end
 
   def successful_items(date = nil)
-    filter_invoices_for_date(date).map do |invoice|
+    @successful_items ||= filter_invoices_for_date(date).map do |invoice|
       invoice.invoice_items
     end.flatten
   end
 
-  def practice_items_sold(date = nil)
+  def items_sold(date = nil)
     successful_items(date).reduce(0) do |sum, invoice_item|
       sum + invoice_item.quantity
     end
   end
 
   def revenue(date = nil)
-    successful_items(date).reduce(0) do |sum, invoice_item|
+    @revenue ||= successful_items(date).reduce(0) do |sum, invoice_item|
       sum + invoice_item.total_cost
     end
   end

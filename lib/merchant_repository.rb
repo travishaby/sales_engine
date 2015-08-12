@@ -92,7 +92,7 @@ class MerchantRepository
 
   def most_items(number_of_merchants)
     @most_items ||= merchants.values.max_by(number_of_merchants) do |merchant|
-      merchant.practice_items_sold
+      merchant.items_sold
     end
   end
 

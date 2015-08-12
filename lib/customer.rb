@@ -23,7 +23,7 @@ class Customer
 
 
   def invoices
-    customer_repository.invoices(id)
+    @invoices ||= customer_repository.invoices(id)
   end
 
 end

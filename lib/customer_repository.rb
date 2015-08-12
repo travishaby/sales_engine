@@ -11,11 +11,11 @@ class CustomerRepository
   end
 
   def all
-    customers.values
+    all ||= customers.values
   end
 
   def random
-    customers.values.to_a.sample
+    random ||= customers.values.to_a.sample
   end
 
   def find_by_id(id)
@@ -23,7 +23,7 @@ class CustomerRepository
   end
 
   def find_by(attribute, match)
-    found = customers.detect do |id, object|
+    found ||= customers.detect do |id, object|
       object.send(attribute) == match
     end
     if found.nil?

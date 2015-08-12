@@ -25,23 +25,23 @@ class Invoice
   end
 
   def transactions
-    invoice_repository.transactions(id)
+    @transactions ||= invoice_repository.transactions(id)
   end
 
   def invoice_items
-    invoice_repository.invoice_items(id)
+    @invoice_items ||= invoice_repository.invoice_items(id)
   end
 
   def items
-    invoice_repository.items(id)
+    @items ||= invoice_repository.items(id)
   end
 
   def customer
-    invoice_repository.customer(customer_id)
+    @customer ||= invoice_repository.customer(customer_id)
   end
 
   def merchant
-    invoice_repository.merchant(merchant_id)
+    @merchant ||= invoice_repository.merchant(merchant_id)
   end
 
 end
