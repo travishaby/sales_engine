@@ -72,7 +72,7 @@ class Merchant
   end
 
   def successful_items(date = nil)
-    @successful_items ||= filter_invoices_for_date(date).map do |invoice|
+    filter_invoices_for_date(date).map do |invoice|
       invoice.invoice_items
     end.flatten
   end
@@ -84,7 +84,7 @@ class Merchant
   end
 
   def revenue(date = nil)
-    @revenue ||= successful_items(date).reduce(0) do |sum, invoice_item|
+    successful_items(date).reduce(0) do |sum, invoice_item|
       sum + invoice_item.total_cost
     end
   end
