@@ -80,19 +80,21 @@ class MerchantRepository
 
 # B.I
 
-  def revenue(merchant_id, date = nil)
-    engine.revenue(merchant_id, date)
-  end
-
   def favorite_customer(merchant_id)
     engine.favorite_customer(merchant_id)
   end
 
-  def most_revenue(x)
-    all_revenues = merchants.keys.collect do |merchant|
-      revenue(merchant.id)
+  def most_revenue(number_of_merchants)
+    merchants.values.max_by(number_of_merchants) do |merchant|
+      merchant.revenue.to_f
     end
-    # sort all revenues from most to least
+  end
+
+  def revenue(date)
+    revenues = merchants.values.map do |merchant|
+      merchant.revenue(date)
+    end
+    revenues.reduce(:+)
   end
 
   def inspect
