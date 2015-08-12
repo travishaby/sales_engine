@@ -21,7 +21,7 @@ class ItemLoaderTest < Minitest::Test
   end
 
   def test_accessing_fixture_values
-    assert_equal "Item Autem Minima", fixture_setup.items["2"].name
+    assert_equal "Item Autem Minima", fixture_setup.items[2].name
   end
 
   def test_that_csv_values_are_imported_from_real_csv_file
@@ -29,7 +29,7 @@ class ItemLoaderTest < Minitest::Test
   end
 
   def test_accessing_values_from_full_csv_file
-    assert_equal "Item Et Deleniti", data_setup.items["47"].name
+    assert_equal "Item Et Deleniti", data_setup.items[47].name
   end
 
 end

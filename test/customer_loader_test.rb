@@ -21,7 +21,7 @@ class CustomerLoaderTest < Minitest::Test
   end
 
   def test_accessing_fixture_values
-    assert_equal "Quinton", fixture_setup.customers["98"].first_name
+    assert_equal "Quinton", fixture_setup.customers[98].first_name
   end
 
   def test_that_csv_values_are_imported_from_real_csv_file
@@ -29,7 +29,7 @@ class CustomerLoaderTest < Minitest::Test
   end
 
   def test_accessing_values_from_full_csv_file
-    assert_equal "Samanta", data_setup.customers["120"].first_name
+    assert_equal "Samanta", data_setup.customers[120].first_name
   end
 
 end

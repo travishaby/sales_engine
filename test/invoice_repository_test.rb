@@ -21,26 +21,26 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_accesses_customer_id_with_id
-    assert_equal "1", fixture_setup.invoices["1"].customer_id
+    assert_equal 1, fixture_setup.invoices[1].customer_id
   end
 
   def test_accesses_merchant_id_with_id
-    assert_equal "75", fixture_setup.invoices["2"].merchant_id
+    assert_equal 75, fixture_setup.invoices[2].merchant_id
   end
 
   def test_accesses_status_with_id
     assert_equal "shipped",
-    fixture_setup.invoices["3"].status
+    fixture_setup.invoices[3].status
   end
 
   def test_accesses_invoice_created_at_with_id
     assert_equal "2012-03-24 15:54:10 UTC",
-    fixture_setup.invoices["4"].created_at
+    fixture_setup.invoices[4].created_at
   end
 
   def test_accesses_invoice_updated_at_with_id
     assert_equal "2012-03-24 15:54:10 UTC",
-    fixture_setup.invoices["4"].updated_at
+    fixture_setup.invoices[4].updated_at
   end
 
   def test_attempt_access_nonexistent_value
@@ -65,12 +65,12 @@ class InvoiceRepositoryTest < Minitest::Test
     fixture_setup.find_by(:updated_at,"2012-03-12 05:54:09 UTC").updated_at
   end
 
-  def test_returns_single_object_with_matching_id
-    assert_equal "1", fixture_setup.find_by_id("5").customer_id
+  def test_returns_single_object_with_matching_customer_id
+    assert_equal 1, fixture_setup.find_by_id(5).customer_id
   end
 
   def test_returns_single_object_with_matching_merchant_id
-    assert_equal "27", fixture_setup.find_by_merchant_id("27").merchant_id
+    assert_equal 27, fixture_setup.find_by_merchant_id(27).merchant_id
   end
 
   def test_returns_single_object_with_matching_created_at
@@ -84,30 +84,30 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_general_find_by_all_method_with_customer_id_and_specific_keys
-    assert_equal ["14", "15", "16", "17", "18", "19", "20", "21"],
-    fixture_setup.find_by_all(:customer_id, "4").keys
+    assert_equal [14, 15, 16, 17, 18, 19, 20, 21],
+    fixture_setup.find_by_all(:customer_id, 4).keys
   end
 
   def test_general_find_by_all_method_with_merchant_id
     assert_equal 1,
-    fixture_setup.find_by_all(:merchant_id, "53").size
+    fixture_setup.find_by_all(:merchant_id, 53).size
   end
 
   def test_general_find_by_all_returns_empty_array_if_name_not_found
     assert_equal [],
-    fixture_setup.find_by_all(:merchant_id,"10000").keys
+    fixture_setup.find_by_all(:merchant_id,10000).keys
   end
 
   def test_find_all_by_id
-    assert_equal 1, fixture_setup.find_all_by_id("76").size
+    assert_equal 1, fixture_setup.find_all_by_id(76).size
   end
 
   def test_find_all_by_customer_id
-    assert_equal 0, fixture_setup.find_all_by_customer_id("6").size
+    assert_equal 0, fixture_setup.find_all_by_customer_id(6).size
   end
 
   def test_find_all_by_first_name_with_specific_keys
-    assert_equal ["32"], fixture_setup.find_all_by_merchant_id("85").keys
+    assert_equal [32], fixture_setup.find_all_by_merchant_id(85).keys
   end
 
   def test_find_all_by_created_at

@@ -11,7 +11,14 @@ class Item
               :updated_at,
               :item_repository
 
-  def initialize(id = nil, name = nil, description = nil, unit_price = nil, merchant_id = nil, created_at = nil, updated_at = nil, item_repository = nil)
+  def initialize(id = nil,
+                 name = nil,
+                 description = nil,
+                 unit_price = nil,
+                 merchant_id = nil,
+                 created_at = nil,
+                 updated_at = nil,
+                 item_repository = nil)
     @id = id
     @name = name
     @description = description

@@ -22,7 +22,7 @@ class SalesEngine
               :customer_repository,
               :transaction_repository
 
-  def initialize
+  def initialize(file = nil)
     @merchant_repository     = merchant_repository
     @invoice_repository      = invoice_repository
     @item_repository         = item_repository
@@ -61,37 +61,42 @@ class SalesEngine
   end
 
   def load_fixture_repositories
-    merchant_loader = MerchantLoader.new(merchant_repository, './fixtures/merchants.csv')
-    invoice_loader = InvoiceLoader.new(invoice_repository, './fixtures/invoices.csv')
+    merchant_loader = MerchantLoader.new(merchant_repository,
+                                        './fixtures/merchants.csv')
+    invoice_loader = InvoiceLoader.new(invoice_repository,
+                                        './fixtures/invoices.csv')
     item_loader = ItemLoader.new(item_repository, './fixtures/items.csv')
-    invoice_item_loader = InvoiceItemLoader.new(invoice_item_repository, './fixtures/invoice_items.csv')
-    customer_loader = CustomerLoader.new(customer_repository, './fixtures/customers.csv')
-    transaction_loader = TransactionLoader.new(transaction_repository, './fixtures/transactions.csv')
+    invoice_item_loader = InvoiceItemLoader.new(invoice_item_repository,
+      './fixtures/invoice_items.csv')
+    customer_loader = CustomerLoader.new(customer_repository,
+                                         './fixtures/customers.csv')
+    transaction_loader = TransactionLoader.new(transaction_repository,
+      './fixtures/transactions.csv')
   end
 
   # merchant
 
   def items_by_merchant(merchant_id)
-    item_repository.find_all_by_merchant_id(merchant_id)
+    item_repository.find_all_by_merchant_id(merchant_id).values
   end
 
   def invoices_by_merchant(merchant_id)
-    invoice_repository.find_all_by_merchant_id(merchant_id)
+    invoice_repository.find_all_by_merchant_id(merchant_id).values
   end
 
   # invoice
 
   def transactions_by_invoice(invoice_id)
-    transaction_repository.find_all_by_invoice_id(invoice_id)
+    transaction_repository.find_all_by_invoice_id(invoice_id).values
   end
 
   def invoice_items_by_invoice(invoice_id)
-    invoice_item_repository.find_all_by_invoice_id(invoice_id)
+    invoice_item_repository.find_all_by_invoice_id(invoice_id).values
   end
 
   def items_by_invoice(invoice_id)
     invoice_items_by_invoice(invoice_id).collect do |invoice_item|
-      item_repository.find_by_id(invoice_item[1].item_id)
+      item_repository.find_by_id(invoice_item.item_id)
     end
   end
 
@@ -106,13 +111,13 @@ class SalesEngine
   # customer
 
   def invoices_by_customer(customer_id)
-    invoice_repository.find_all_by_customer_id(customer_id)
+    invoice_repository.find_all_by_customer_id(customer_id).values
   end
 
   # transaction
 
-  def invoices_by_transaction(invoice_id)
-    invoice_repository.find_all_by_id(invoice_id)
+  def invoice_by_transaction(invoice_id)
+    invoice_repository.find_by_id(invoice_id)
   end
 
   #invoice_item
@@ -128,68 +133,12 @@ class SalesEngine
   #item
 
   def invoice_items_by_item_id(item_id)
-    invoice_item_repository.find_all_by_item_id(item_id)
+    invoice_item_repository.find_all_by_item_id(item_id).values
   end
 
   def merchant_by_merchant_id(merchant_id)
     merchant_repository.find_by_id(merchant_id)
   end
-
-####### Business Intelligence #######
-
-  def successful_invoices(merchant_id, date = nil)
-    invoices = invoices_by_merchant(merchant_id)
-    successful_invoices = filter_successful_invoices(invoices)
-    if date
-      successful_invoices.select do |invoice|
-        same_date?(invoice, date)
-      end
-    else
-      successful_invoices
-    end
-  end
-
-  def filter_successful_invoices(invoices)
-    invoices.values.select do |invoice|
-      any_successful_transactions?(invoice)
-    end
-  end
-
-  def same_date?(invoice, date)
-    invoices_by_id = invoice_repository.invoices[invoice.id]
-    created_at = invoices_by_id.created_at[0..9]
-    Date.parse(created_at) == date
-  end
-
-  def any_successful_transactions?(invoice)
-    transaction_repository.find_all_by_invoice_id(invoice.id).values.any? do |transaction|
-      transaction_repository.successful?(transaction.id)
-    end
-  end
-
-  def successful_items(merchant_id, date = nil)
-    invoice_items = successful_invoices(merchant_id, date).map {|invoice|
-      invoice_items_by_invoice(invoice.id).values}
-    invoice_items.flatten
-  end
-
-  def revenue(merchant_id, date = nil)
-    successful_items(merchant_id, date).reduce(0) do |sum, invoice_item|
-      sum + (invoice_item.quantity.to_i * invoice_item.unit_price)
-    end
-  end
-
-  def favorite_customer(merchant_id)
-    merchant_invoices = successful_invoices(merchant_id)
-    grouped = merchant_invoices.group_by do |invoice|
-      invoice.customer_id
-    end
-    grouped = grouped.values.sort_by {|array| array.size} #THIS IS SO
-    best_customer = grouped.last.size
-  end
-
-  # I think we need to restructure this with the date so check_transactions is also taking the date in an if/ else. if no date, run as is. if date, run as invoice_id and created_at.
-
 
 
 end

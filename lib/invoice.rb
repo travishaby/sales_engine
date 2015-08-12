@@ -32,7 +32,6 @@ class Invoice
     invoice_repository.invoice_items(id)
   end
 
-#NEED TO FIX
   def items
     invoice_repository.items(id)
   end

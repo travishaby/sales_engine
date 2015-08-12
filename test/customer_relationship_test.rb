@@ -12,7 +12,7 @@ class CustomerRelationshipTest < Minitest::Test
   end
 
   def test_gets_items_with_customer_id
-    result = setup.find_by_id("4").invoices.size
+    result = setup.find_by_id(4).invoices.size
     assert_equal 8, result
   end
 

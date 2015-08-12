@@ -16,8 +16,4 @@ class CustomerTest < Minitest::Test
     assert customer.updated_at
   end
 
-  
-
-
-
 end

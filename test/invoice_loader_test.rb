@@ -22,7 +22,7 @@ class InvoiceLoaderTest < Minitest::Test
 
   def test_accessing_fixture_values
     assert_equal "shipped",
-    fixture_setup.invoices["2"].status
+    fixture_setup.invoices[2].status
   end
 
   def test_that_csv_values_are_imported_from_real_csv_file
@@ -30,7 +30,7 @@ class InvoiceLoaderTest < Minitest::Test
   end
 
   def test_accessing_values_from_full_csv_file
-    assert_equal "2012-03-23 22:54:14 UTC", fixture_setup.invoices["95"].updated_at
+    assert_equal "2012-03-23 22:54:14 UTC", fixture_setup.invoices[95].updated_at
   end
 
 end

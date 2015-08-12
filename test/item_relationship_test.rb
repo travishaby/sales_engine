@@ -10,12 +10,12 @@ class ItemTest < Minitest::Test
   end
 
   def test_gets_invoice_items_with_item_id
-    result = setup.find_by_id("3").invoice_items.size
+    result = setup.find_by_id(3).invoice_items.size
     assert_equal 4, result
   end
 
   def test_gets_one_merchant_with_item_id
-    result = setup.find_by_id("5").merchant.name
+    result = setup.find_by_id(5).merchant.name
     assert_equal "Schroeder-Jerde", result
   end
 

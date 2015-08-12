@@ -46,6 +46,17 @@ class MerchantRelationshipsTest < Minitest::Test
     assert_equal "whatever", result
   end
 
+
+  def test_finding_successful_items
+  result = setup.find_by_id(8).successful_items.size
+  assert_equal 6, result
+  end
+
+  def test_find_revenue
+    result = setup.find_by_id(8).revenue
+    assert_equal BigDecimal.new("10161.56"), result
+  end
+
   def test_returns_customers_with_pending_invoices
     #all invoices say shipped??
   end

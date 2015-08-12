@@ -21,7 +21,7 @@ class TransactionLoaderTest < Minitest::Test
   end
 
   def test_accessing_fixture_values
-    assert_equal "89", fixture_setup.transactions["98"].invoice_id
+    assert_equal 89, fixture_setup.transactions[98].invoice_id
   end
 
   def test_that_csv_values_are_imported_from_real_csv_file
@@ -29,7 +29,7 @@ class TransactionLoaderTest < Minitest::Test
   end
 
   def test_accessing_values_from_full_csv_file
-    assert_equal "4620443924688732", data_setup.transactions["120"].credit_card_number
+    assert_equal "4620443924688732", data_setup.transactions[120].credit_card_number
   end
 
 end

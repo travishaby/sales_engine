@@ -21,25 +21,25 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_accesses_item_id_with_id
-    assert_equal "2", fixture_setup.items["2"].id
+    assert_equal 2, fixture_setup.items[2].id
   end
 
   def test_accesses_item_name_with_id
-    assert_equal "Item Qui Esse", fixture_setup.items["1"].name
+    assert_equal "Item Qui Esse", fixture_setup.items[1].name
   end
 
   def test_accesses_item_created_at_with_id
     assert_equal "2012-03-27 14:53:59 UTC",
-    fixture_setup.items["3"].created_at
+    fixture_setup.items[3].created_at
   end
 
   def test_accesses_item_updated_at_with_id
     assert_equal "2012-03-27 14:53:59 UTC",
-    fixture_setup.items["4"].updated_at
+    fixture_setup.items[4].updated_at
   end
 
   def test_attempt_access_nonexistent_value
-    refute fixture_setup.items["10001"]
+    refute fixture_setup.items[10001]
   end
 
   def test_that_all_returns_all_instances
@@ -74,7 +74,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_general_find_by_all_method_with_name_and_specific_keys
-    assert_equal ["4"],
+    assert_equal [4],
     fixture_setup.find_by_all(:name,"Item Nemo Facere").keys
   end
 
@@ -94,7 +94,7 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_find_all_by_id
-    assert_equal 1, fixture_setup.find_all_by_id("76").size
+    assert_equal 1, fixture_setup.find_all_by_id(76).size
   end
 
   def test_find_all_by_name
@@ -102,11 +102,11 @@ class ItemRepositoryTest < Minitest::Test
   end
 
   def test_find_all_by_name_with_specific_keys
-    assert_equal ["5"], fixture_setup.find_all_by_name("Item Expedita Aliquam").keys
+    assert_equal [5], fixture_setup.find_all_by_name("Item Expedita Aliquam").keys
   end
 
   def test_find_all_by_merchant_id
-    assert_equal 26, fixture_setup.find_all_by_merchant_id("3").size
+    assert_equal 26, fixture_setup.find_all_by_merchant_id(3).size
   end
 
   def test_find_all_by_updated_at
