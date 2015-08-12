@@ -56,7 +56,9 @@ class MerchantRelationshipsTest < Minitest::Test
   end
 
   def test_returns_customers_with_pending_invoices
-    result = setup.find_by_id(13).customers_with_pending_invoices
+    merchant = data_setup.find_by_name("Parisian Group")
+    result = merchant.customers_with_pending_invoices
+    assert_equal 4, result.size
   end
 
 end

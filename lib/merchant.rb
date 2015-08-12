@@ -29,17 +29,29 @@ class Merchant
   def merchant_transactions
     invoices.map do |invoice|
       invoice.transactions
-    end.flatten
+    end
   end
 
-  def filter_successful_invoices
-    merchant_transactions.select do |transaction|
+  def filter_successful_transactions
+    merchant_transactions.flatten.select do |transaction|
+      transaction.result == "success"
+    end
+  end
+
+  def filter_pending_invoices
+    invoices.select do |invoice|
+      invoice if all_transactions_failed?(invoice)
+    end
+  end
+
+  def all_transactions_failed?(invoice)
+    invoice.transactions.none? do |transaction|
       transaction.result == "success"
     end
   end
 
   def successful_invoices
-    filter_successful_invoices.map do |transaction|
+    filter_successful_transactions.map do |transaction|
       transaction.invoice
     end
   end
@@ -71,8 +83,6 @@ class Merchant
     end
   end
 
-############# TO COMPLETE
-
   def favorite_customer
     grouped = successful_invoices.group_by do |invoice|
       invoice.customer_id
@@ -80,6 +90,12 @@ class Merchant
     sorted = grouped.values.sort_by {|array| array.size}
     best_customer_invoice = sorted.last[0]
     customer_name = best_customer_invoice.customer
+  end
+
+  def customers_with_pending_invoices
+    filter_pending_invoices.map do |invoice|
+      invoice.customer
+    end
   end
 
 end
