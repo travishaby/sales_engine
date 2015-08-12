@@ -40,8 +40,8 @@ class MerchantRelationshipsTest < Minitest::Test
     assert_equal expected_revenue_for_date, result
   end
 
-  def test_finding_successful_items
-    result = setup.find_by_id(8).successful_items.size
+  def test_finding_successful_invoice_items
+    result = setup.find_by_id(8).successful_invoice_items.size
     assert_equal 6, result
   end
 
@@ -61,5 +61,5 @@ class MerchantRelationshipsTest < Minitest::Test
     result = merchant.customers_with_pending_invoices
     assert_equal 4, result.size
   end
-  
+
 end

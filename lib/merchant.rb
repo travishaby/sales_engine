@@ -71,20 +71,20 @@ class Merchant
     Date.parse(created_at) == date
   end
 
-  def successful_items(date = nil)
+  def successful_invoice_items(date = nil)
     filter_invoices_for_date(date).map do |invoice|
       invoice.invoice_items
     end.flatten
   end
 
   def items_sold(date = nil)
-    successful_items(date).reduce(0) do |sum, invoice_item|
+    successful_invoice_items(date).reduce(0) do |sum, invoice_item|
       sum + invoice_item.quantity
     end
   end
 
   def revenue(date = nil)
-    successful_items(date).reduce(0) do |sum, invoice_item|
+    successful_invoice_items(date).reduce(0) do |sum, invoice_item|
       sum + invoice_item.total_cost
     end
   end

@@ -29,4 +29,10 @@ class CustomerRelationshipTest < Minitest::Test
     assert_equal "Shields, Hirthe and Smith", result
   end
 
+  def test_favorite_merchant_for_customer_for_sure
+    customer = setup.find_by_id(13)
+    result = customer.favorite_merchant.name
+    assert_equal "Kirlin, Jakubowski and Smitham", result
+  end
+
 end

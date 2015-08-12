@@ -102,6 +102,20 @@ class ItemRepository
     engine.merchant_by_merchant_id(merchant_id)
   end
 
+  # BI
+
+  def most_revenue(number_of_items)
+    items.values.max_by(number_of_items) do |item|
+      item.revenue
+    end
+  end
+
+  def most_items(number_of_items)
+    items.values.max_by(number_of_items) do |item|
+      item.items_sold
+    end
+  end
+
   def inspect
     "#<#{self.class} #{@items.size} rows>"
   end

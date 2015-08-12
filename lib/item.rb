@@ -37,4 +37,31 @@ class Item
     @merchant ||= item_repository.merchant(merchant_id)
   end
 
+  def successful_invoice_items
+    merchant.successful_invoice_items.select do |invoice_item|
+      invoice_item.item_id == id
+    end
+  end
+
+  def revenue
+    @revenue ||= successful_invoice_items.reduce(0) do |sum, invoice_item|
+      sum + invoice_item.total_cost
+    end
+  end
+
+  def items_sold
+    @items_sold ||= successful_invoice_items.reduce(0) do |sum, invoice_item|
+      sum + invoice_item.quantity
+    end
+  end
+
+  def best_day
+    invoice_items_sorted_by_quantity =
+    successful_invoice_items.sort_by do |invoice_item|
+      invoice_item.quantity
+    end
+    best_seller = invoice_items_sorted_by_quantity.reverse.first
+    Date.parse(best_seller.invoice.created_at)
+  end
+
 end
