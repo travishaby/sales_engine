@@ -26,16 +26,6 @@ class Merchant
     merchant_repository.invoices(id)
   end
 
-  def revenue(date = nil)
-    successful_items(date).reduce(0) do |sum, invoice_item|
-      sum + (invoice_item.quantity.to_i * invoice_item.unit_price)
-    end
-  end
-
-  def favorite_customer
-    merchant_repository.favorite_customer(id)
-  end
-
   def merchant_transactions
     invoices.map do |invoice|
       invoice.transactions
