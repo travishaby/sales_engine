@@ -19,21 +19,21 @@ class Merchant
   end
 
   def items
-    merchant_repository.items(id)
+    @items ||= merchant_repository.items(id)
   end
 
   def invoices
-    merchant_repository.invoices(id)
+    @invoices ||= merchant_repository.invoices(id)
   end
 
   def merchant_transactions
-    invoices.map do |invoice|
+    @merchant_transactions ||= invoices.map do |invoice|
       invoice.transactions
     end
   end
 
   def filter_successful_transactions
-    merchant_transactions.flatten.select do |transaction|
+    @filter_successful_transactions ||= merchant_transactions.flatten.select do |transaction|
       transaction.result == "success"
     end
   end
@@ -75,6 +75,12 @@ class Merchant
     filter_invoices_for_date(date).map do |invoice|
       invoice.invoice_items
     end.flatten
+  end
+
+  def practice_items_sold(date = nil)
+    successful_items(date).reduce(0) do |sum, invoice_item|
+      sum + invoice_item.quantity
+    end
   end
 
   def revenue(date = nil)
