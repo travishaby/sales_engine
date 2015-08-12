@@ -30,4 +30,10 @@ class MerchantRepositoryRelationshipsTest < Minitest::Test
     assert_equal BigDecimal.new("5531.37"), result
   end
 
+  def test_returns_top_x_merchants_with_most_items_sold
+    result = data_setup.most_items(5)
+    assert_equal "Kassulke, O'Hara and Quitzon", result.first.name
+    assert_equal "Daugherty Group", result.last.name
+  end
+
 end

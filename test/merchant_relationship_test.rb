@@ -41,8 +41,8 @@ class MerchantRelationshipsTest < Minitest::Test
   end
 
   def test_finding_successful_items
-  result = setup.find_by_id(8).successful_items.size
-  assert_equal 6, result
+    result = setup.find_by_id(8).successful_items.size
+    assert_equal 6, result
   end
 
   def test_find_revenue
@@ -51,7 +51,8 @@ class MerchantRelationshipsTest < Minitest::Test
   end
 
 
-  def test_returns_customer_with_most_successful_transactions    result = data_setup.find_by_name("Terry-Moore").favorite_customer
+  def test_returns_customer_with_most_successful_transactions
+    result = data_setup.find_by_name("Terry-Moore").favorite_customer
     assert_equal "Jayme", result.first_name
   end
 
@@ -60,5 +61,5 @@ class MerchantRelationshipsTest < Minitest::Test
     result = merchant.customers_with_pending_invoices
     assert_equal 4, result.size
   end
-
+  
 end

@@ -90,6 +90,22 @@ class MerchantRepository
     end
   end
 
+  def most_items(number_of_merchants)
+    all_invoices = merchants.values.map do |merchant|
+      merchant.successful_invoices
+    end.flatten
+    invoice_items_by_merchant = {}
+    all_invoices.map do |invoice|
+      if invoice_items_by_merchant[invoice.merchant_id]
+        invoice_items_by_merchant[invoice.merchant_id] << invoice.invoice_items
+      else
+        invoice_items_by_merchant[invoice.merchant_id] = invoice.invoice_items
+      end
+    end
+    
+  end
+
+
   def revenue(date)
     revenues = merchants.values.map do |merchant|
       merchant.revenue(date)
