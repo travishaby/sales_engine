@@ -102,4 +102,7 @@ class InvoiceItemRepository
     engine.item_by_item_id(item_id)
   end
 
+  def inspect
+    "#<#{self.class} #{@invoice_items.size} rows>"
+  end
 end

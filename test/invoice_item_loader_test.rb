@@ -21,7 +21,7 @@ class InvoiceItemLoaderTest < Minitest::Test
   end
 
   def test_accessing_fixture_values
-    assert_equal "7", fixture_setup.invoice_items["98"].quantity
+    assert_equal 7, fixture_setup.invoice_items[98].quantity
   end
 
   def test_that_csv_values_are_imported_from_real_csv_file
@@ -29,7 +29,7 @@ class InvoiceItemLoaderTest < Minitest::Test
   end
 
   def test_accessing_values_from_full_csv_file
-    assert_equal "25", data_setup.invoice_items["120"].invoice_id
+    assert_equal 25, data_setup.invoice_items[120].invoice_id
   end
 
 end

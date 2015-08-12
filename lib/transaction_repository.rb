@@ -24,9 +24,13 @@ class TransactionRepository
 
   def find_by(attribute, match)
     found = transactions.detect do |id, object|
-      object.send(attribute).downcase == match.downcase
+      object.send(attribute) == match
     end
-    found.last || empty = []
+    if found.nil?
+      found = []
+    else
+      found = found.last
+    end
   end
 
   def find_by_invoice_id(invoice_id)
@@ -49,7 +53,7 @@ class TransactionRepository
 
   def find_by_all(attribute, match)
     found = transactions.select do |id, object|
-      object.send(attribute).downcase == match.downcase
+      object.send(attribute) == match
     end
     found || empty = []
   end
@@ -84,8 +88,8 @@ class TransactionRepository
 
   ########## RELATIONSHIP METHODS ##############
 
-  def invoices(invoice_id)
-    engine.invoices_by_transaction(invoice_id)
+  def invoice(invoice_id)
+    engine.invoice_by_transaction(invoice_id)
   end
 
   ########### BUSINESS INTELLIGENCE ###############
@@ -94,4 +98,7 @@ class TransactionRepository
     transactions[transaction_id].result == "success"
   end
 
+  def inspect
+    "#<#{self.class} #{@transactions.size} rows>"
+  end
 end

@@ -24,9 +24,13 @@ class MerchantRepository
 
   def find_by(attribute, match)
     found = merchants.detect do |id, object|
-      object.send(attribute).downcase == match.downcase
-    end.last
-    found || empty = []
+      object.send(attribute) == match
+    end
+    if found.nil?
+      found = []
+    else
+      found = found.last
+    end
   end
 
   def find_by_name(name)
@@ -43,7 +47,7 @@ class MerchantRepository
 
   def find_by_all(attribute, match)
     found = merchants.select do |id, object|
-      object.send(attribute).downcase == match.downcase
+      object.send(attribute) == match
     end
     found || empty = []
   end
@@ -91,4 +95,7 @@ class MerchantRepository
     # sort all revenues from most to least
   end
 
+  def inspect
+    "#<#{self.class} #{@merchants.size} rows>"
+  end
 end

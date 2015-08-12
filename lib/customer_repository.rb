@@ -24,7 +24,7 @@ class CustomerRepository
 
   def find_by(attribute, match)
     found = customers.detect do |id, object|
-      object.send(attribute).downcase == match.downcase
+      object.send(attribute) == match
     end
     if found.nil?
       found = []
@@ -34,11 +34,11 @@ class CustomerRepository
   end
 
   def find_by_first_name(first_name)
-    find_by(:first_name, first_name)
+    find_by(:first_name, first_name.capitalize)
   end
 
   def find_by_last_name(last_name)
-    find_by(:last_name, last_name)
+    find_by(:last_name, last_name.capitalize)
 
   end
 
@@ -53,7 +53,7 @@ class CustomerRepository
 
   def find_by_all(attribute, match)
     found = customers.select do |id, object|
-      object.send(attribute).downcase == match.downcase
+      object.send(attribute) == match
     end
     found || empty = []
   end
@@ -63,11 +63,11 @@ class CustomerRepository
   end
 
   def find_all_by_first_name(first_name)
-    find_by_all(:first_name, first_name)
+    find_by_all(:first_name, first_name.capitalize)
   end
 
   def find_all_by_last_name(last_name)
-    find_by_all(:last_name, last_name)
+    find_by_all(:last_name, last_name.capitalize)
   end
 
   def find_all_by_created_at(created_at)
@@ -84,4 +84,7 @@ class CustomerRepository
     engine.invoices_by_customer(customer_id)
   end
 
+  def inspect
+    "#<#{self.class} #{@customers.size} rows>"
+  end
 end

@@ -24,9 +24,13 @@ class InvoiceRepository
 
   def find_by(attribute, match)
     found = invoices.detect do |id, object|
-      object.send(attribute).downcase == match.downcase
-    end.last
-    found || empty = []
+      object.send(attribute) == match
+    end
+    if found.nil?
+      found
+    else
+      found = found.last
+    end
   end
 
   def find_by_customer_id(customer_id)
@@ -51,7 +55,7 @@ class InvoiceRepository
 
   def find_by_all(attribute, match)
     found = invoices.select do |id, object|
-      object.send(attribute).downcase == match.downcase
+      object.send(attribute) == match
     end
     found || empty = []
   end
@@ -102,4 +106,7 @@ class InvoiceRepository
     engine.merchant_by_invoice(merchant_id)
   end
 
+  def inspect
+    "#<#{self.class} #{@invoices.size} rows>"
+  end
 end

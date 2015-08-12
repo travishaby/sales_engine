@@ -59,7 +59,7 @@ class ItemRepository
 
   def find_by_all(attribute, match)
     found = items.select do |id, object|
-      object.send(attribute).downcase == match.downcase
+      object.send(attribute) == match
     end
     found || empty = []
   end
@@ -102,4 +102,7 @@ class ItemRepository
     engine.merchant_by_merchant_id(merchant_id)
   end
 
+  def inspect
+    "#<#{self.class} #{@items.size} rows>"
+  end
 end

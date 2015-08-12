@@ -21,21 +21,21 @@ class InvoiceItemRepositoryTest < Minitest::Test
   end
 
   def test_accesses_invoice_id_with_id
-    assert_equal "1", data_setup.invoice_items["2"].invoice_id
+    assert_equal 1, data_setup.invoice_items[2].invoice_id
   end
 
   def test_accesses_invoice_item_created_at_with_id
     assert_equal "2012-03-27 14:54:09 UTC",
-    data_setup.invoice_items["3"].created_at
+    data_setup.invoice_items[3].created_at
   end
 
   def test_accesses_invoice_item_updated_at_with_id
     assert_equal "2012-03-27 14:54:09 UTC",
-    data_setup.invoice_items["4"].updated_at
+    data_setup.invoice_items[4].updated_at
   end
 
   def test_attempt_access_nonexistent_value
-    refute data_setup.invoice_items["22000"]
+    refute data_setup.invoice_items[22000]
   end
 
   def test_that_all_returns_all_instances
@@ -57,7 +57,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
   end
 
   def test_returns_single_object_with_matching_item_id
-    assert_equal "528", fixture_setup.find_by_item_id("528").item_id
+    assert_equal 528, fixture_setup.find_by_item_id(528).item_id
   end
 
   def test_returns_single_object_unit_price
@@ -71,20 +71,20 @@ class InvoiceItemRepositoryTest < Minitest::Test
 
   def test_general_find_by_all_returns_empty_array_if_item_id_not_found
     assert_equal [],
-    fixture_setup.find_by_all(:item_id,"7300").keys
+    fixture_setup.find_by_all(:item_id,7300).keys
   end
 
   def test_general_find_by_all_returns_array_size_zero_if_item_not_found
     assert_equal 0,
-    fixture_setup.find_by_all(:item_id,"7300").size
+    fixture_setup.find_by_all(:item_id,7300).size
   end
 
   def test_find_all_by_quantity
-    assert_equal 0, fixture_setup.find_all_by_quantity("13635").size
+    assert_equal 0, fixture_setup.find_all_by_quantity(13635).size
   end
 
   def test_find_all_by_first_name_with_specific_keys
-    assert_equal ["7"], fixture_setup.find_all_by_item_id("530").keys
+    assert_equal [7], fixture_setup.find_all_by_item_id(530).keys
   end
 
   def test_find_all_by_created_at

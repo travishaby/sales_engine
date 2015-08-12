@@ -21,29 +21,29 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_accesses_customer_first_name_with_id
-    assert_equal "Joey", fixture_setup.customers["1"].first_name
+    assert_equal "Joey", fixture_setup.customers[1].first_name
   end
 
   def test_accesses_customer_last_name_with_id
-    assert_equal "Ondricka", fixture_setup.customers["1"].last_name
+    assert_equal "Ondricka", fixture_setup.customers[1].last_name
   end
 
   def test_accesses_customer_id_with_id
-    assert_equal "2", fixture_setup.customers["2"].id
+    assert_equal 2, fixture_setup.customers[2].id
   end
 
   def test_accesses_customer_created_at_with_id
     assert_equal "2012-03-27 14:54:10 UTC",
-    fixture_setup.customers["3"].created_at
+    fixture_setup.customers[3].created_at
   end
 
   def test_accesses_customer_updated_at_with_id
     assert_equal "2012-03-27 14:54:10 UTC",
-    fixture_setup.customers["4"].updated_at
+    fixture_setup.customers[4].updated_at
   end
 
   def test_attempt_access_nonexistent_value
-    refute fixture_setup.customers["103"]
+    refute fixture_setup.customers[103]
   end
 
   def test_that_all_returns_all_instances
@@ -65,7 +65,7 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_returns_single_object_with_matching_id
-    assert_equal "Sylvester", fixture_setup.find_by_id("5").first_name
+    assert_equal "Sylvester", fixture_setup.find_by_id(5).first_name
   end
 
   def test_returns_single_object_with_matching_first_name
@@ -95,7 +95,7 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_general_find_by_all_method_with_last_name_and_specific_keys
-    assert_equal ["91", "100"],
+    assert_equal [91, 100],
     fixture_setup.find_by_all(:last_name,"Barrows").keys
   end
 
@@ -115,7 +115,7 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_find_all_by_id
-    assert_equal 1, fixture_setup.find_all_by_id("76").size
+    assert_equal 1, fixture_setup.find_all_by_id(76).size
   end
 
   def test_find_all_by_first_name
@@ -123,11 +123,11 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_find_all_by_first_name_with_specific_keys
-    assert_equal ["47"], fixture_setup.find_all_by_first_name("Wayne").keys
+    assert_equal [47], fixture_setup.find_all_by_first_name("Wayne").keys
   end
 
   def test_find_all_by_first_name_case_insensitive
-    assert_equal ["47"], fixture_setup.find_all_by_first_name("wayne").keys
+    assert_equal [47], fixture_setup.find_all_by_first_name("wayne").keys
   end
 
   def test_find_all_by_last_name
@@ -135,7 +135,7 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_find_all_by_last_name_with_specific_keys
-    assert_equal ["91", "100"], fixture_setup.find_all_by_last_name("Barrows").keys
+    assert_equal [91, 100], fixture_setup.find_all_by_last_name("Barrows").keys
   end
 
   def test_find_all_by_created_at

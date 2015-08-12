@@ -15,37 +15,4 @@ class SalesEngineTest < Minitest::Test
     sales_engine
   end
 
-  def test_successful_invoices
-    result = setup.successful_invoices("8")[0].id
-    assert_equal "12", result
-  end
-  #
-  # def test_successful_invoices_with_all_data
-  #   result = data_setup.successful_invoices("8")
-  #   assert_equal ["12"], result
-  # end
-
-  def test_any_successful_transactions
-    invoice1 = setup.invoice_repository.find_by_id("12")
-    invoice2 = setup.invoice_repository.find_by_id("13")
-    result1 = setup.any_successful_transactions?(invoice1)
-    result2 = setup.any_successful_transactions?(invoice2)
-    assert result1
-    refute result2
-  end
-
-  def test_finding_successful_items
-  result = setup.successful_items("8").size
-  assert_equal 6, result
-  end
-
-  def test_find_revenue
-    result = setup.revenue("8")
-    assert_equal BigDecimal.new("10161.56"), result
-  end
-
-  def test_case_name
-    result = setup.revenue("8")
-    assert_equal BigDecimal.new("10161.56"), result
-  end
 end

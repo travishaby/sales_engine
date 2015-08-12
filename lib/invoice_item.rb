@@ -37,4 +37,8 @@ class InvoiceItem
     invoice_item_repository.item(item_id)
   end
 
+  def total_cost
+    quantity * unit_price
+  end
+
 end

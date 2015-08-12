@@ -11,8 +11,8 @@ class TransactionRelationshipTest < Minitest::Test
   end
 
   def test_invoices_with_invoice_id
-    result = setup.find_by_id("10").invoices.size
-    assert_equal 1, result
+    result = setup.find_by_id(10).invoice
+    assert_equal 11, result.id
   end
 
 end
