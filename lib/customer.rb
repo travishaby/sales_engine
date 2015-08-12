@@ -21,9 +21,35 @@ class Customer
     @customer_repository = customer_repository
   end
 
-
   def invoices
     @invoices ||= customer_repository.invoices(id)
+  end
+
+######BUSINESS INTELLIGENCE######
+
+  def transactions
+    invoices.map do |invoice|
+      invoice.transactions
+    end.flatten
+  end
+
+  def filtered_transactions
+    transactions.map do |transaction|
+      transaction if transaction.result == 'success'
+    end
+  end
+
+  def filtered_invoices
+    filtered_transactions.map do |transaction|
+      transaction.invoice
+    end
+  end
+
+  def favorite_merchant
+    favorite_merchant = filtered_invoices.group_by do |invoice|
+      invoice.merchant
+    end
+    favorite_merchant.first[0]
   end
 
 end
