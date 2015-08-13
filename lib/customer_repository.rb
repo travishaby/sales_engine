@@ -11,11 +11,11 @@ class CustomerRepository
   end
 
   def all
-    all ||= customers.values
+    @all ||= customers.values
   end
 
   def random
-    random ||= customers.values.to_a.sample
+    customers.values.to_a.sample
   end
 
   def find_by_id(id)

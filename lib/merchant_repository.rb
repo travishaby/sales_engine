@@ -11,7 +11,7 @@ class MerchantRepository
   end
 
   def all
-    merchants.values
+    @all ||= merchants.values
   end
 
   def random

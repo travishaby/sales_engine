@@ -33,11 +33,13 @@ class ItemTest < Minitest::Test
   end
 
   def test_gets_total_sold_for_item
+    skip
     result = data_setup.find_by_id(3).items_sold
     assert_equal 91, result
   end
 
   def test_best_day_for_item
+    skip
     result = data_setup.find_by_name("Item Accusamus Ut").best_day
     date = Date.parse("2012-03-24")
     assert_equal date, result

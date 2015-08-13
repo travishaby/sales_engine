@@ -30,7 +30,7 @@ class Item
   end
 
   def invoice_items
-    @invoice_items ||= item_repository.invoice_items(id)
+    item_repository.invoice_items(id)
   end
 
   def merchant
@@ -38,7 +38,7 @@ class Item
   end
 
   def successful_invoice_items
-    merchant.successful_invoice_items.select do |invoice_item|
+    @successful ||= merchant.successful_invoice_items.select do |invoice_item|
       invoice_item.item_id == id
     end
   end

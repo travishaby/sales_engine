@@ -33,8 +33,9 @@ class Merchant
   end
 
   def filter_successful_transactions
-    @filter_successful_transactions ||= merchant_transactions.flatten.select do |transaction|
-      transaction.result == "success"
+    @successful_transactions ||= merchant_transactions.
+      flatten.select do |transaction|
+        transaction.result == "success"
     end
   end
 
@@ -51,7 +52,7 @@ class Merchant
   end
 
   def successful_invoices
-    filter_successful_transactions.map do |transaction|
+    @successful_invoices ||= filter_successful_transactions.map do |transaction|
       transaction.invoice
     end
   end

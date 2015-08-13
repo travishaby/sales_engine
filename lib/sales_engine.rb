@@ -42,12 +42,12 @@ class SalesEngine
   end
 
   def load_repositories
-    merchant_loader = MerchantLoader.new(merchant_repository)
-    invoice_loader = InvoiceLoader.new(invoice_repository)
-    item_loader = ItemLoader.new(item_repository)
-    invoice_item_loader = InvoiceItemLoader.new(invoice_item_repository)
-    customer_loader = CustomerLoader.new(customer_repository)
-    transaction_loader = TransactionLoader.new(transaction_repository)
+    @merchant_loader ||= MerchantLoader.new(merchant_repository)
+    @invoice_loader ||= InvoiceLoader.new(invoice_repository)
+    @item_loader ||= ItemLoader.new(item_repository)
+    @invoice_item_loader ||= InvoiceItemLoader.new(invoice_item_repository)
+    @customer_loader ||= CustomerLoader.new(customer_repository)
+    @transaction_loader ||= TransactionLoader.new(transaction_repository)
   end
 
   def fixture_startup
@@ -61,17 +61,17 @@ class SalesEngine
   end
 
   def load_fixture_repositories
-    merchant_loader = MerchantLoader.new(merchant_repository,
+    @merchant_loader ||= MerchantLoader.new(merchant_repository,
                                         './fixtures/merchants.csv')
-    invoice_loader = InvoiceLoader.new(invoice_repository,
+    @invoice_loader ||= InvoiceLoader.new(invoice_repository,
                                       './fixtures/invoices.csv')
-    item_loader = ItemLoader.new(item_repository,
+    @item_loader ||= ItemLoader.new(item_repository,
                                 './fixtures/items.csv')
-    invoice_item_loader = InvoiceItemLoader.new(invoice_item_repository,
+    @invoice_item_loader ||= InvoiceItemLoader.new(invoice_item_repository,
                                                 './fixtures/invoice_items.csv')
-    customer_loader = CustomerLoader.new(customer_repository,
+    @customer_loader ||= CustomerLoader.new(customer_repository,
                                          './fixtures/customers.csv')
-    transaction_loader = TransactionLoader.new(transaction_repository,
+    @transaction_loader ||= TransactionLoader.new(transaction_repository,
                                               './fixtures/transactions.csv')
   end
 
@@ -139,6 +139,16 @@ class SalesEngine
 
   def merchant_by_merchant_id(merchant_id)
     merchant_repository.find_by_id(merchant_id)
+  end
+
+  # BI
+
+  def create_invoice_items(invoice_id, items)
+    invoice_item_repository.create_invoice_items(invoice_id, items)
+  end
+
+  def charge(invoice_id, charge_info)
+    transaction_repository.charge(invoice_id, charge_info)
   end
 
 end
