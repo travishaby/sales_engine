@@ -11,7 +11,7 @@ class ItemRepository
   end
 
   def all
-    items.values
+    @all ||= items.values
   end
 
   def random

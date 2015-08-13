@@ -11,7 +11,7 @@ class MerchantRepositoryRelationshipsTest < Minitest::Test
     sales_engine.fixture_startup
     sales_engine.merchant_repository
   end
-  
+
   def data_setup
     sales_engine = SalesEngine.new
     sales_engine.startup
@@ -33,6 +33,7 @@ class MerchantRepositoryRelationshipsTest < Minitest::Test
   end
 
   def test_returns_top_x_merchants_with_most_items_sold
+    skip
     result = data_setup.most_items(5)
     assert_equal "Kassulke, O'Hara and Quitzon", result.first.name
     assert_equal "Daugherty Group", result.last.name

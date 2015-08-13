@@ -98,6 +98,23 @@ class TransactionRepository
     transactions[transaction_id].result == "success"
   end
 
+  def charge(invoice_id, charge_info)
+    id = transactions.keys.sort.last + 1
+    credit_card_number = charge_info[:credit_card_number]
+    credit_card_expiration_date = charge_info[:credit_card_expiration_date]
+    result = charge_info[:result]
+    created_at = Date.parse(Time.now.to_s).to_s
+    updated_at = Date.parse(Time.now.to_s).to_s
+    transactions[id] = Transaction.new(id,
+                                       invoice_id,
+                                       credit_card_number,
+                                       credit_card_expiration_date,
+                                       result,
+                                       created_at,
+                                       updated_at,
+                                       self)
+  end
+
   def inspect
     "#<#{self.class} #{@transactions.size} rows>"
   end

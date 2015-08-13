@@ -102,6 +102,31 @@ class InvoiceItemRepository
     engine.item_by_item_id(item_id)
   end
 
+  # BI
+
+  def create_invoice_items(invoice_id, items)
+    items.each do |item|
+      create_invoice_item(invoice_id, item)
+    end
+  end
+
+  def create_invoice_item(invoice_id, item)
+    id         = invoice_items.keys.sort.last + 1
+    item_id    = item.id
+    quantity   = 1
+    unit_price = item.unit_price
+    created_at = Date.parse(Time.now.to_s).to_s
+    updated_at = Date.parse(Time.now.to_s).to_s
+    invoice_items[id] = InvoiceItem.new(id,
+                                        item_id,
+                                        invoice_id,
+                                        quantity,
+                                        unit_price,
+                                        created_at,
+                                        updated_at,
+                                        self)
+  end
+
   def inspect
     "#<#{self.class} #{@invoice_items.size} rows>"
   end

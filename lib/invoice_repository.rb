@@ -106,6 +106,35 @@ class InvoiceRepository
     engine.merchant_by_invoice(merchant_id)
   end
 
+  ######## INVOICE CREATION ########
+
+  def create(invoice_info)
+    invoice_id = invoices.keys.sort.last + 1
+    items = invoice_info[:items]
+    engine.create_invoice_items(invoice_id, items)
+    create_invoice(invoice_info)
+  end
+
+  def create_invoice(invoice_info)
+    id = invoices.keys.sort.last + 1
+    customer_id = invoice_info[:customer].id
+    merchant_id = invoice_info[:merchant].id
+    status = invoice_info[:status]
+    created_at = Date.parse(Time.now.to_s).to_s
+    updated_at = Date.parse(Time.now.to_s).to_s
+    invoices[id] = Invoice.new(id,
+                               customer_id,
+                               merchant_id,
+                               status,
+                               created_at,
+                               updated_at,
+                               self)
+  end
+
+  def charge(invoice_id, charge_info)
+    engine.charge(invoice_id, charge_info)
+  end
+
   def inspect
     "#<#{self.class} #{@invoices.size} rows>"
   end
